@@ -217,3 +217,10 @@ export interface SimpleOptions {
 export interface DataFrameWithId extends DataFrame {
   id: string;
 }
+
+export interface Service {
+  id: string;
+  name: string
+  color: string
+  
+}
