@@ -219,8 +219,7 @@ export interface DataFrameWithId extends DataFrame {
 }
 
 export interface Service {
-  id: string;
-  name: string
-  color: string
-  
+  id: number;
+  name: string;
+  color: string;
 }

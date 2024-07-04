@@ -35,7 +35,9 @@ import {
 import MapNode from './components/MapNode';
 import ColorScale from 'components/ColorScale';
 
-import ServiceBar from './components/Service';
+import ServiceBar from './components/ServiceBar';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 // Calculate node position, width, etc.
 function generateDrawnNode(d: Node, i: number, wm: Weathermap): DrawnNode {
@@ -537,636 +539,638 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
 
   if (wm) {
     return (
-      <div
-        className={cx(
-          styles.wrapper,
-          css`
-            width: ${width2}px;
-            height: ${height2}px;
-            position: relative;
-          `
-        )}
-      >
+      <DndProvider backend={HTML5Backend}>
+        <div
+          className={cx(
+            styles.wrapper,
+            css`
+              width: ${width2}px;
+              height: ${height2}px;
+              position: relative;
+            `
+          )}
+        >
 
-        <ServiceBar />
+          <ServiceBar />
 
-        {hoveredLink ? (
-          <div
-            className={css`
-              position: absolute;
-              top: ${hoveredLink.mouseEvent.nativeEvent.layerY}px;
-              left: ${hoveredLink.mouseEvent.nativeEvent.layerX}px;
-              transform: translate(0%, -100%);
-              background-color: ${wm.settings.tooltip.backgroundColor};
-              color: ${wm.settings.tooltip.textColor} !important;
-              font-size: ${wm.settings.tooltip.fontSize} !important;
-              z-index: 10000;
-              display: ${hoveredLink ? 'flex' : 'none'};
-              flex-direction: column;
-              padding: ${wm.settings.tooltip.fontSize}px;
-              border-radius: 4px;
-              border: 1px solid
-                ${getScaleColor(
-                  hoveredLink.link.sides[hoveredLink.side].currentValue,
-                  hoveredLink.link.sides[hoveredLink.side].bandwidth
-                )};
-            `}
-          >
+          {hoveredLink ? (
             <div
-              style={{
-                fontSize: wm.settings.tooltip.fontSize,
-                borderBottom: `1px solid ${theme.colors.border.medium}`,
-                marginBottom: '4px',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
+              className={css`
+                position: absolute;
+                top: ${hoveredLink.mouseEvent.nativeEvent.layerY}px;
+                left: ${hoveredLink.mouseEvent.nativeEvent.layerX}px;
+                transform: translate(0%, -100%);
+                background-color: ${wm.settings.tooltip.backgroundColor};
+                color: ${wm.settings.tooltip.textColor} !important;
+                font-size: ${wm.settings.tooltip.fontSize} !important;
+                z-index: 10000;
+                display: ${hoveredLink ? 'flex' : 'none'};
+                flex-direction: column;
+                padding: ${wm.settings.tooltip.fontSize}px;
+                border-radius: 4px;
+                border: 1px solid
+                  ${getScaleColor(
+                    hoveredLink.link.sides[hoveredLink.side].currentValue,
+                    hoveredLink.link.sides[hoveredLink.side].bandwidth
+                  )};
+              `}
             >
-              {hoveredLink.link.nodes[0].label} {hoveredLink.side === 'A' ? '--->' : '<---'}{' '}
-              {hoveredLink.link.nodes[1].label}
-            </div>
-            <div style={{ fontSize: wm.settings.tooltip.fontSize }}>
-              Usage - Inbound: {hoveredLink.link.sides.Z.currentValueText}, Outbound:{' '}
-              {hoveredLink.link.sides.A.currentValueText}
-            </div>
-            <div style={{ fontSize: wm.settings.tooltip.fontSize }}>
-              Bandwidth - Inbound: {hoveredLink.link.sides.Z.currentBandwidthText}, Outbound:{' '}
-              {hoveredLink.link.sides.A.currentBandwidthText}
-            </div>
-            <div style={{ fontSize: wm.settings.tooltip.fontSize }}>
-              Throughput (%) - Inbound: {hoveredLink.link.sides.Z.currentPercentageText}, Outbound:{' '}
-              {hoveredLink.link.sides.A.currentPercentageText}
-            </div>
-            <div style={{ fontSize: wm.settings.tooltip.fontSize, paddingBottom: '4px' }}>
-              {hoveredLink.link.sides[hoveredLink.side].dashboardLink.length > 0 ? 'Click to see more.' : ''}
-            </div>
-            {(hoveredLink.link.sides.A.query || hoveredLink.link.sides.Z.query) && filteredGraphQueries.length > 0 ? (
-              <React.Fragment>
-                <TimeSeries
-                  width={250}
-                  height={100}
-                  timeRange={timeRange}
-                  timeZone={getTimeZone()}
-                  frames={filteredGraphQueries.map((frame: DataFrame) => {
-                    let copy = frame;
-                    let isInboundQuery = getDataFrameName(frame, data.series) === hoveredLink.link.sides.Z.query;
-                    copy.fields = copy.fields.map((v) => {
-                      v.config.custom = {
-                        fillOpacity: 10,
-                        lineColor: isInboundQuery
-                          ? wm.settings.tooltip.inboundColor
-                          : wm.settings.tooltip.outboundColor,
-                      };
-                      return v;
-                    });
-                    return copy;
-                  })}
-                  legend={{
-                    calcs: [],
-                    displayMode: LegendDisplayMode.List,
-                    placement: 'bottom',
-                    isVisible: true,
-                    showLegend: false,
-                  }}
-                  tweakScale={(opts, forField: Field<any, Vector<any>>) => {
-                    opts.softMin = 0;
-                    if (
-                      wm.settings.tooltip.scaleToBandwidth &&
-                      hoveredLink.link.sides[hoveredLink.side].bandwidth > 0
-                    ) {
-                      opts.softMax = hoveredLink.link.sides[hoveredLink.side].bandwidth;
-                    }
-                    return opts;
-                  }}
-                  tweakAxis={(opts, forField: Field<any, Vector<any>>) => {
-                    opts.formatValue = getlinkGraphFormatter(
-                      hoveredLink.link.units
-                        ? hoveredLink.link.units
-                        : wm.settings.link.defaultUnits
-                        ? wm.settings.link.defaultUnits
-                        : 'bps'
-                    );
-                    return opts;
-                  }}
-                >
-                  {(config, alignedDataFrame) => {
-                    return (
-                      <>
-                        <TooltipPlugin
-                          config={config}
-                          data={alignedDataFrame}
-                          mode={TooltipDisplayMode.Multi}
-                          timeZone={getTimeZone()}
-                        />
-                      </>
-                    );
-                  }}
-                </TimeSeries>
-                <div style={{ display: 'flex', alignItems: 'center', paddingTop: '10px' }}>
-                  <div
-                    style={{
-                      width: '10px',
-                      height: '3px',
-                      background: wm.settings.tooltip.inboundColor,
-                      paddingLeft: '5px',
-                      marginRight: '4px',
+              <div
+                style={{
+                  fontSize: wm.settings.tooltip.fontSize,
+                  borderBottom: `1px solid ${theme.colors.border.medium}`,
+                  marginBottom: '4px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                {hoveredLink.link.nodes[0].label} {hoveredLink.side === 'A' ? '--->' : '<---'}{' '}
+                {hoveredLink.link.nodes[1].label}
+              </div>
+              <div style={{ fontSize: wm.settings.tooltip.fontSize }}>
+                Usage - Inbound: {hoveredLink.link.sides.Z.currentValueText}, Outbound:{' '}
+                {hoveredLink.link.sides.A.currentValueText}
+              </div>
+              <div style={{ fontSize: wm.settings.tooltip.fontSize }}>
+                Bandwidth - Inbound: {hoveredLink.link.sides.Z.currentBandwidthText}, Outbound:{' '}
+                {hoveredLink.link.sides.A.currentBandwidthText}
+              </div>
+              <div style={{ fontSize: wm.settings.tooltip.fontSize }}>
+                Throughput (%) - Inbound: {hoveredLink.link.sides.Z.currentPercentageText}, Outbound:{' '}
+                {hoveredLink.link.sides.A.currentPercentageText}
+              </div>
+              <div style={{ fontSize: wm.settings.tooltip.fontSize, paddingBottom: '4px' }}>
+                {hoveredLink.link.sides[hoveredLink.side].dashboardLink.length > 0 ? 'Click to see more.' : ''}
+              </div>
+              {(hoveredLink.link.sides.A.query || hoveredLink.link.sides.Z.query) && filteredGraphQueries.length > 0 ? (
+                <React.Fragment>
+                  <TimeSeries
+                    width={250}
+                    height={100}
+                    timeRange={timeRange}
+                    timeZone={getTimeZone()}
+                    frames={filteredGraphQueries.map((frame: DataFrame) => {
+                      let copy = frame;
+                      let isInboundQuery = getDataFrameName(frame, data.series) === hoveredLink.link.sides.Z.query;
+                      copy.fields = copy.fields.map((v) => {
+                        v.config.custom = {
+                          fillOpacity: 10,
+                          lineColor: isInboundQuery
+                            ? wm.settings.tooltip.inboundColor
+                            : wm.settings.tooltip.outboundColor,
+                        };
+                        return v;
+                      });
+                      return copy;
+                    })}
+                    legend={{
+                      calcs: [],
+                      displayMode: LegendDisplayMode.List,
+                      placement: 'bottom',
+                      isVisible: true,
+                      showLegend: false,
                     }}
-                  ></div>
-                  <div style={{ fontSize: wm.settings.tooltip.fontSize }}>Inbound</div>
-                  <div
-                    style={{
-                      width: '10px',
-                      height: '3px',
-                      background: wm.settings.tooltip.outboundColor,
-                      marginLeft: '10px',
-                      marginRight: '4px',
+                    tweakScale={(opts, forField: Field<any, Vector<any>>) => {
+                      opts.softMin = 0;
+                      if (
+                        wm.settings.tooltip.scaleToBandwidth &&
+                        hoveredLink.link.sides[hoveredLink.side].bandwidth > 0
+                      ) {
+                        opts.softMax = hoveredLink.link.sides[hoveredLink.side].bandwidth;
+                      }
+                      return opts;
                     }}
-                  ></div>
-                  <div
-                    style={{
-                      fontSize: wm.settings.tooltip.fontSize,
+                    tweakAxis={(opts, forField: Field<any, Vector<any>>) => {
+                      opts.formatValue = getlinkGraphFormatter(
+                        hoveredLink.link.units
+                          ? hoveredLink.link.units
+                          : wm.settings.link.defaultUnits
+                          ? wm.settings.link.defaultUnits
+                          : 'bps'
+                      );
+                      return opts;
                     }}
                   >
-                    Outbound
+                    {(config, alignedDataFrame) => {
+                      return (
+                        <>
+                          <TooltipPlugin
+                            config={config}
+                            data={alignedDataFrame}
+                            mode={TooltipDisplayMode.Multi}
+                            timeZone={getTimeZone()}
+                          />
+                        </>
+                      );
+                    }}
+                  </TimeSeries>
+                  <div style={{ display: 'flex', alignItems: 'center', paddingTop: '10px' }}>
+                    <div
+                      style={{
+                        width: '10px',
+                        height: '3px',
+                        background: wm.settings.tooltip.inboundColor,
+                        paddingLeft: '5px',
+                        marginRight: '4px',
+                      }}
+                    ></div>
+                    <div style={{ fontSize: wm.settings.tooltip.fontSize }}>Inbound</div>
+                    <div
+                      style={{
+                        width: '10px',
+                        height: '3px',
+                        background: wm.settings.tooltip.outboundColor,
+                        marginLeft: '10px',
+                        marginRight: '4px',
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        fontSize: wm.settings.tooltip.fontSize,
+                      }}
+                    >
+                      Outbound
+                    </div>
                   </div>
-                </div>
-              </React.Fragment>
-            ) : (
-              ''
-            )}
-          </div>
-        ) : (
-          ''
-        )}
-        <ColorScale thresholds={wm.scale} settings={wm.settings} />
-        <svg
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            backgroundImage: wm.settings.panel.backgroundImage
-              ? `url(${wm.settings.panel.backgroundImage.url})`
-              : 'none',
-            backgroundSize: wm.settings.panel.backgroundImage?.fit,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: wm.settings.panel.backgroundImage ? 'none' : wm.settings.panel.backgroundColor,
-          }}
-          id={`nw-${wm.id}${isEditMode ? '_' : ''}`}
-          width={width2}
-          height={height2}
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          viewBox={`0 0 ${wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale)} ${
-            wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale)
-          }`}
-          shapeRendering="crispEdges"
-          textRendering="geometricPrecision"
-          fontFamily="sans-serif"
-          // @ts-ignore
-          onWheel={zoom}
-          onMouseDown={(e) => {
-            e.preventDefault();
-            updateAspects();
-            setDragging(true);
-          }}
-          onMouseMove={(e) => {
-            if (isDragging && (e.ctrlKey || e.buttons === 4 || e.shiftKey)) {
-              drag(e);
-            }
-          }}
-          onMouseUp={() => {
-            setDragging(false);
-            let panned = wm;
-            panned.settings.panel.offset = offset;
-            onOptionsChange({ weathermap: panned });
-          }}
-          onDoubleClick={() => {
-            setSelectedNodes([]);
-          }}
-        >
-          {wm.settings.panel.grid.enabled ? (
-            <defs>
-              <pattern
-                id="smallGrid"
-                width={wm.settings.panel.grid.size}
-                height={wm.settings.panel.grid.size}
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d={`M ${wm.settings.panel.grid.size} 0 L 0 0 0 ${wm.settings.panel.grid.size}`}
-                  fill="none"
-                  stroke="gray"
-                  strokeWidth="2"
-                  opacity={1}
-                />
-              </pattern>
-            </defs>
+                </React.Fragment>
+              ) : (
+                ''
+              )}
+            </div>
           ) : (
             ''
           )}
-          <g
-            transform={`translate(${
-              (wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) -
-                wm.settings.panel.panelSize.width) /
-                2 +
-              offset.x
-            }, ${
-              (wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) -
-                wm.settings.panel.panelSize.height) /
-                2 +
-              offset.y
-            })`}
-            overflow="visible"
+          <ColorScale thresholds={wm.scale} settings={wm.settings} />
+          <svg
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              backgroundImage: wm.settings.panel.backgroundImage
+                ? `url(${wm.settings.panel.backgroundImage.url})`
+                : 'none',
+              backgroundSize: wm.settings.panel.backgroundImage?.fit,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: wm.settings.panel.backgroundImage ? 'none' : wm.settings.panel.backgroundColor,
+            }}
+            id={`nw-${wm.id}${isEditMode ? '_' : ''}`}
+            width={width2}
+            height={height2}
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            viewBox={`0 0 ${wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale)} ${
+              wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale)
+            }`}
+            shapeRendering="crispEdges"
+            textRendering="geometricPrecision"
+            fontFamily="sans-serif"
+            // @ts-ignore
+            onWheel={zoom}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              updateAspects();
+              setDragging(true);
+            }}
+            onMouseMove={(e) => {
+              if (isDragging && (e.ctrlKey || e.buttons === 4 || e.shiftKey)) {
+                drag(e);
+              }
+            }}
+            onMouseUp={() => {
+              setDragging(false);
+              let panned = wm;
+              panned.settings.panel.offset = offset;
+              onOptionsChange({ weathermap: panned });
+            }}
+            onDoubleClick={() => {
+              setSelectedNodes([]);
+            }}
           >
-            {wm.settings.panel.grid.guidesEnabled ? (
-              <>
-
-              {/* Node, Drop Target */}
-
-                <rect
-                  x={
-                    wm.nodes.length > 0
-                      ? wm.nodes[0].position[0] -
-                        wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) * 2
-                      : 0
-                  }
-                  y={
-                    wm.nodes.length > 0
-                      ? wm.nodes[0].position[1] -
-                        wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) * 2
-                      : 0
-                  }
-                  width={wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) * 4}
-                  height={wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) * 4}
-                  fill="url(#smallGrid)"
-                />
-
-              {/* service list demonstration */}
-
-              </>
+            {wm.settings.panel.grid.enabled ? (
+              <defs>
+                <pattern
+                  id="smallGrid"
+                  width={wm.settings.panel.grid.size}
+                  height={wm.settings.panel.grid.size}
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d={`M ${wm.settings.panel.grid.size} 0 L 0 0 0 ${wm.settings.panel.grid.size}`}
+                    fill="none"
+                    stroke="gray"
+                    strokeWidth="2"
+                    opacity={1}
+                  />
+                </pattern>
+              </defs>
             ) : (
               ''
             )}
-          </g>
-          <g
-            transform={`translate(${
-              (wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) -
-                wm.settings.panel.panelSize.width) /
-                2 +
-              offset.x
-            }, ${
-              (wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) -
-                wm.settings.panel.panelSize.height) /
-                2 +
-              offset.y
-            })`}
-          >
-            <g>
-              {links.map((d, i) => {
-                if (d.nodes[0].id === d.nodes[1].id) {
-                  return;
-                }
-                let prevLinks: DrawnLink[] = [];
-                // Automatic data collection through connection links
-                if (tempNodes[d.source.index].isConnection) {
-                  // If this link is coming from a connection, we want to take the link to that connection's data
-                  // Find the link with that data
-                  prevLinks = links.filter((l) => l.target.id === d.source.id);
-                  // Check there is only one connection (otherwise this doesn't work)
-                  if (prevLinks.length === 1) {
-                    for (let key in d.sides.A) {
-                      if (key !== 'labelOffset' && key !== 'anchor') {
-                        // @ts-ignore
-                        d.sides.A[key] = prevLinks[0].sides.A[key];
-                      }
+            <g
+              transform={`translate(${
+                (wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) -
+                  wm.settings.panel.panelSize.width) /
+                  2 +
+                offset.x
+              }, ${
+                (wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) -
+                  wm.settings.panel.panelSize.height) /
+                  2 +
+                offset.y
+              })`}
+              overflow="visible"
+            >
+              {wm.settings.panel.grid.guidesEnabled ? (
+                <>
+
+                {/* Node, Drop Target */}
+
+                  <rect
+                    x={
+                      wm.nodes.length > 0
+                        ? wm.nodes[0].position[0] -
+                          wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) * 2
+                        : 0
                     }
-                  } else {
-                    console.warn(`Connection node "${d.source.label}" missing input connection.`);
+                    y={
+                      wm.nodes.length > 0
+                        ? wm.nodes[0].position[1] -
+                          wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) * 2
+                        : 0
+                    }
+                    width={wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) * 4}
+                    height={wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) * 4}
+                    fill="url(#smallGrid)"
+                  />
+
+                {/* service list demonstration */}
+
+                </>
+              ) : (
+                ''
+              )}
+            </g>
+            <g
+              transform={`translate(${
+                (wm.settings.panel.panelSize.width * Math.pow(1.2, wm.settings.panel.zoomScale) -
+                  wm.settings.panel.panelSize.width) /
+                  2 +
+                offset.x
+              }, ${
+                (wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) -
+                  wm.settings.panel.panelSize.height) /
+                  2 +
+                offset.y
+              })`}
+            >
+              <g>
+                {links.map((d, i) => {
+                  if (d.nodes[0].id === d.nodes[1].id) {
+                    return;
                   }
-                }
-                return (
-                  <g
-                    key={i}
-                    className="line"
-                    data-testid="link"
-                    strokeOpacity={1}
-                    width={Math.abs(d.target.x - d.source.x)}
-                    height={Math.abs(d.target.y - d.source.y)}
-                  >
-                    <line
-                      strokeWidth={d.stroke}
-                      stroke={getScaleColor(d.sides.A.currentValue, d.sides.A.bandwidth)}
-                      x1={d.lineStartA.x}
-                      y1={d.lineStartA.y}
-                      x2={d.lineEndA.x}
-                      y2={d.lineEndA.y}
+                  let prevLinks: DrawnLink[] = [];
+                  // Automatic data collection through connection links
+                  if (tempNodes[d.source.index].isConnection) {
+                    // If this link is coming from a connection, we want to take the link to that connection's data
+                    // Find the link with that data
+                    prevLinks = links.filter((l) => l.target.id === d.source.id);
+                    // Check there is only one connection (otherwise this doesn't work)
+                    if (prevLinks.length === 1) {
+                      for (let key in d.sides.A) {
+                        if (key !== 'labelOffset' && key !== 'anchor') {
+                          // @ts-ignore
+                          d.sides.A[key] = prevLinks[0].sides.A[key];
+                        }
+                      }
+                    } else {
+                      console.warn(`Connection node "${d.source.label}" missing input connection.`);
+                    }
+                  }
+                  return (
+                    <g
+                      key={i}
+                      className="line"
+                      data-testid="link"
+                      strokeOpacity={1}
+                      width={Math.abs(d.target.x - d.source.x)}
+                      height={Math.abs(d.target.y - d.source.y)}
+                    >
+                      <line
+                        strokeWidth={d.stroke}
+                        stroke={getScaleColor(d.sides.A.currentValue, d.sides.A.bandwidth)}
+                        x1={d.lineStartA.x}
+                        y1={d.lineStartA.y}
+                        x2={d.lineEndA.x}
+                        y2={d.lineEndA.y}
+                        onMouseMove={(e) => {
+                          handleLinkHover(d, 'A', e);
+                        }}
+                        onMouseOut={handleLinkHoverLoss}
+                        onClick={() => {
+                          if (d.sides.A.dashboardLink.length > 0) {
+                            window.open(d.sides.A.dashboardLink, '_blank');
+                          }
+                        }}
+                        style={d.sides.A.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
+                      ></line>
+                      {tempNodes[d.source.index].isConnection ? (
+                        <circle
+                          cx={d.lineStartA.x}
+                          cy={d.lineStartA.y}
+                          r={prevLinks.length > 0 ? Math.max(d.stroke, prevLinks[0].stroke) / 2 : d.stroke / 2}
+                          fill={getScaleColor(d.sides.A.currentValue, d.sides.A.bandwidth)}
+                          style={{ paintOrder: 'stroke' }}
+                        ></circle>
+                      ) : (
+                        ''
+                      )}
+                      {tempNodes[d.target.index].isConnection ? (
+                        ''
+                      ) : (
+                        <React.Fragment>
+                          <polygon
+                            points={`
+                                          ${d.arrowCenterA.x}
+                                          ${d.arrowCenterA.y}
+                                          ${d.arrowPolygonA.p1.x}
+                                          ${d.arrowPolygonA.p1.y}
+                                          ${d.arrowPolygonA.p2.x}
+                                          ${d.arrowPolygonA.p2.y}
+                                      `}
+                            fill={getScaleColor(d.sides.A.currentValue, d.sides.A.bandwidth)}
+                            onMouseMove={(e) => {
+                              handleLinkHover(d, 'A', e);
+                            }}
+                            onMouseOut={handleLinkHoverLoss}
+                            onClick={() => {
+                              if (d.sides.A.dashboardLink.length > 0) {
+                                window.open(d.sides.A.dashboardLink, '_blank');
+                              }
+                            }}
+                            style={d.sides.A.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
+                          ></polygon>
+                          <line
+                            strokeWidth={d.stroke}
+                            stroke={getScaleColor(d.sides.Z.currentValue, d.sides.Z.bandwidth)}
+                            x1={d.lineStartZ.x}
+                            y1={d.lineStartZ.y}
+                            x2={d.lineEndZ.x}
+                            y2={d.lineEndZ.y}
+                            onMouseMove={(e) => {
+                              handleLinkHover(d, 'Z', e);
+                            }}
+                            onMouseOut={handleLinkHoverLoss}
+                            onClick={() => {
+                              if (d.sides.Z.dashboardLink.length > 0) {
+                                window.open(d.sides.Z.dashboardLink, '_blank');
+                              }
+                            }}
+                            style={d.sides.Z.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
+                          ></line>
+                          <polygon
+                            points={`
+                                          ${d.arrowCenterZ.x}
+                                          ${d.arrowCenterZ.y}
+                                          ${d.arrowPolygonZ.p1.x}
+                                          ${d.arrowPolygonZ.p1.y}
+                                          ${d.arrowPolygonZ.p2.x}
+                                          ${d.arrowPolygonZ.p2.y}
+                                      `}
+                            fill={getScaleColor(d.sides.Z.currentValue, d.sides.Z.bandwidth)}
+                            onMouseMove={(e) => {
+                              handleLinkHover(d, 'Z', e);
+                            }}
+                            onMouseOut={handleLinkHoverLoss}
+                            onClick={() => {
+                              if (d.sides.Z.dashboardLink.length > 0) {
+                                window.open(d.sides.Z.dashboardLink, '_blank');
+                              }
+                            }}
+                            style={d.sides.Z.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
+                          ></polygon>
+                        </React.Fragment>
+                      )}
+                    </g>
+                  );
+                })}
+              </g>
+              <g>
+                {links.map((d, i) => {
+                  if (d.nodes[0].id === d.nodes[1].id) {
+                    return;
+                  }
+                  const transform = getPercentPoint(
+                    d.lineStartZ,
+                    d.lineStartA,
+                    (tempNodes[d.target.index].isConnection ? 1 : 0.5) * (d.sides.A.labelOffset / 100)
+                  );
+                  return (
+                    <g
+                      fontStyle={'italic'}
+                      transform={`translate(${transform.x},${transform.y})`}
                       onMouseMove={(e) => {
                         handleLinkHover(d, 'A', e);
                       }}
                       onMouseOut={handleLinkHoverLoss}
-                      onClick={() => {
-                        if (d.sides.A.dashboardLink.length > 0) {
-                          window.open(d.sides.A.dashboardLink, '_blank');
+                      key={i}
+                    >
+                      <rect
+                        x={
+                          -measureText(`${d.sides.A.currentText}`, wm.settings.fontSizing.link).width / 2 -
+                          (wm.settings.fontSizing.link * 1.5) / 2
                         }
+                        y={-wm.settings.fontSizing.link}
+                        width={
+                          measureText(`${d.sides.A.currentText}`, wm.settings.fontSizing.link).width +
+                          wm.settings.fontSizing.link * 1.5
+                        }
+                        height={wm.settings.fontSizing.link * 2}
+                        fill={getSolidFromAlphaColor(
+                          wm.settings.link.label.background,
+                          wm.settings.panel.backgroundColor
+                        )}
+                        stroke={getSolidFromAlphaColor(wm.settings.link.label.border, wm.settings.panel.backgroundColor)}
+                        strokeWidth={2}
+                        rx={(wm.settings.fontSizing.link + 8) / 2}
+                      ></rect>
+                      <text
+                        x={0}
+                        y={
+                          measureText(`${d.sides.A.currentText}`, wm.settings.fontSizing.link).actualBoundingBoxAscent / 2
+                        }
+                        textAnchor={'middle'}
+                        fontSize={`${wm.settings.fontSizing.link}px`}
+                        fill={wm.settings.link.label.font}
+                      >
+                        {`${d.sides.A.currentText}`}
+                      </text>
+                    </g>
+                  );
+                })}
+              </g>
+              <g>
+                {links.map((d, i) => {
+                  if (d.nodes[0].id === d.nodes[1].id || tempNodes[d.target.index].isConnection) {
+                    return;
+                  }
+                  const transform = getPercentPoint(d.lineStartA, d.lineStartZ, 0.5 * (d.sides.Z.labelOffset / 100));
+                  return (
+                    <g
+                      fontStyle={'italic'}
+                      transform={`translate(${transform.x},${transform.y})`}
+                      onMouseMove={(e) => {
+                        handleLinkHover(d, 'Z', e);
                       }}
-                      style={d.sides.A.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
-                    ></line>
-                    {tempNodes[d.source.index].isConnection ? (
-                      <circle
-                        cx={d.lineStartA.x}
-                        cy={d.lineStartA.y}
-                        r={prevLinks.length > 0 ? Math.max(d.stroke, prevLinks[0].stroke) / 2 : d.stroke / 2}
-                        fill={getScaleColor(d.sides.A.currentValue, d.sides.A.bandwidth)}
-                        style={{ paintOrder: 'stroke' }}
-                      ></circle>
-                    ) : (
-                      ''
-                    )}
-                    {tempNodes[d.target.index].isConnection ? (
-                      ''
-                    ) : (
-                      <React.Fragment>
-                        <polygon
-                          points={`
-                                        ${d.arrowCenterA.x}
-                                        ${d.arrowCenterA.y}
-                                        ${d.arrowPolygonA.p1.x}
-                                        ${d.arrowPolygonA.p1.y}
-                                        ${d.arrowPolygonA.p2.x}
-                                        ${d.arrowPolygonA.p2.y}
-                                    `}
-                          fill={getScaleColor(d.sides.A.currentValue, d.sides.A.bandwidth)}
-                          onMouseMove={(e) => {
-                            handleLinkHover(d, 'A', e);
-                          }}
-                          onMouseOut={handleLinkHoverLoss}
-                          onClick={() => {
-                            if (d.sides.A.dashboardLink.length > 0) {
-                              window.open(d.sides.A.dashboardLink, '_blank');
-                            }
-                          }}
-                          style={d.sides.A.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
-                        ></polygon>
-                        <line
-                          strokeWidth={d.stroke}
-                          stroke={getScaleColor(d.sides.Z.currentValue, d.sides.Z.bandwidth)}
-                          x1={d.lineStartZ.x}
-                          y1={d.lineStartZ.y}
-                          x2={d.lineEndZ.x}
-                          y2={d.lineEndZ.y}
-                          onMouseMove={(e) => {
-                            handleLinkHover(d, 'Z', e);
-                          }}
-                          onMouseOut={handleLinkHoverLoss}
-                          onClick={() => {
-                            if (d.sides.Z.dashboardLink.length > 0) {
-                              window.open(d.sides.Z.dashboardLink, '_blank');
-                            }
-                          }}
-                          style={d.sides.Z.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
-                        ></line>
-                        <polygon
-                          points={`
-                                        ${d.arrowCenterZ.x}
-                                        ${d.arrowCenterZ.y}
-                                        ${d.arrowPolygonZ.p1.x}
-                                        ${d.arrowPolygonZ.p1.y}
-                                        ${d.arrowPolygonZ.p2.x}
-                                        ${d.arrowPolygonZ.p2.y}
-                                    `}
-                          fill={getScaleColor(d.sides.Z.currentValue, d.sides.Z.bandwidth)}
-                          onMouseMove={(e) => {
-                            handleLinkHover(d, 'Z', e);
-                          }}
-                          onMouseOut={handleLinkHoverLoss}
-                          onClick={() => {
-                            if (d.sides.Z.dashboardLink.length > 0) {
-                              window.open(d.sides.Z.dashboardLink, '_blank');
-                            }
-                          }}
-                          style={d.sides.Z.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
-                        ></polygon>
-                      </React.Fragment>
-                    )}
-                  </g>
-                );
-              })}
-            </g>
-            <g>
-              {links.map((d, i) => {
-                if (d.nodes[0].id === d.nodes[1].id) {
-                  return;
-                }
-                const transform = getPercentPoint(
-                  d.lineStartZ,
-                  d.lineStartA,
-                  (tempNodes[d.target.index].isConnection ? 1 : 0.5) * (d.sides.A.labelOffset / 100)
-                );
-                return (
-                  <g
-                    fontStyle={'italic'}
-                    transform={`translate(${transform.x},${transform.y})`}
-                    onMouseMove={(e) => {
-                      handleLinkHover(d, 'A', e);
-                    }}
-                    onMouseOut={handleLinkHoverLoss}
-                    key={i}
-                  >
-                    <rect
-                      x={
-                        -measureText(`${d.sides.A.currentText}`, wm.settings.fontSizing.link).width / 2 -
-                        (wm.settings.fontSizing.link * 1.5) / 2
-                      }
-                      y={-wm.settings.fontSizing.link}
-                      width={
-                        measureText(`${d.sides.A.currentText}`, wm.settings.fontSizing.link).width +
-                        wm.settings.fontSizing.link * 1.5
-                      }
-                      height={wm.settings.fontSizing.link * 2}
-                      fill={getSolidFromAlphaColor(
-                        wm.settings.link.label.background,
-                        wm.settings.panel.backgroundColor
-                      )}
-                      stroke={getSolidFromAlphaColor(wm.settings.link.label.border, wm.settings.panel.backgroundColor)}
-                      strokeWidth={2}
-                      rx={(wm.settings.fontSizing.link + 8) / 2}
-                    ></rect>
-                    <text
-                      x={0}
-                      y={
-                        measureText(`${d.sides.A.currentText}`, wm.settings.fontSizing.link).actualBoundingBoxAscent / 2
-                      }
-                      textAnchor={'middle'}
-                      fontSize={`${wm.settings.fontSizing.link}px`}
-                      fill={wm.settings.link.label.font}
+                      onMouseOut={handleLinkHoverLoss}
+                      key={i}
                     >
-                      {`${d.sides.A.currentText}`}
-                    </text>
-                  </g>
-                );
-              })}
-            </g>
-            <g>
-              {links.map((d, i) => {
-                if (d.nodes[0].id === d.nodes[1].id || tempNodes[d.target.index].isConnection) {
-                  return;
-                }
-                const transform = getPercentPoint(d.lineStartA, d.lineStartZ, 0.5 * (d.sides.Z.labelOffset / 100));
-                return (
-                  <g
-                    fontStyle={'italic'}
-                    transform={`translate(${transform.x},${transform.y})`}
-                    onMouseMove={(e) => {
-                      handleLinkHover(d, 'Z', e);
-                    }}
-                    onMouseOut={handleLinkHoverLoss}
-                    key={i}
-                  >
-                    <rect
-                      x={
-                        -measureText(`${d.sides.Z.currentText}`, wm.settings.fontSizing.link).width / 2 -
-                        (wm.settings.fontSizing.link * 1.5) / 2
-                      }
-                      y={-wm.settings.fontSizing.link}
-                      width={
-                        measureText(`${d.sides.Z.currentText}`, wm.settings.fontSizing.link).width +
-                        wm.settings.fontSizing.link * 1.5
-                      }
-                      height={wm.settings.fontSizing.link * 2}
-                      fill={getSolidFromAlphaColor(
-                        wm.settings.link.label.background,
-                        wm.settings.panel.backgroundColor
-                      )}
-                      stroke={getSolidFromAlphaColor(wm.settings.link.label.border, wm.settings.panel.backgroundColor)}
-                      strokeWidth={2}
-                      rx={(wm.settings.fontSizing.link + 8) / 2}
-                    ></rect>
-                    <text
-                      x={0}
-                      y={
-                        measureText(`${d.sides.Z.currentText}`, wm.settings.fontSizing.link).actualBoundingBoxAscent / 2
-                      }
-                      textAnchor={'middle'}
-                      fontSize={`${wm.settings.fontSizing.link}px`}
-                      fill={wm.settings.link.label.font}
-                    >
-                      {`${d.sides.Z.currentText}`}
-                    </text>
-                  </g>
-                );
-              })}
-            </g>
-            <g>
-              {nodes.map((d, i) => (
-                <MapNode
-                  key={d.id}
-                  {...{
-                    node: d,
-                    draggedNode: draggedNode,
-                    selectedNodes: selectedNodes,
-                    wm: wm,
-                    onDrag: (e, position) => {
-                      // Return early if we actually want to just pan the whole weathermap.
-                      if (e.ctrlKey) {
-                        return;
-                      }
+                      <rect
+                        x={
+                          -measureText(`${d.sides.Z.currentText}`, wm.settings.fontSizing.link).width / 2 -
+                          (wm.settings.fontSizing.link * 1.5) / 2
+                        }
+                        y={-wm.settings.fontSizing.link}
+                        width={
+                          measureText(`${d.sides.Z.currentText}`, wm.settings.fontSizing.link).width +
+                          wm.settings.fontSizing.link * 1.5
+                        }
+                        height={wm.settings.fontSizing.link * 2}
+                        fill={getSolidFromAlphaColor(
+                          wm.settings.link.label.background,
+                          wm.settings.panel.backgroundColor
+                        )}
+                        stroke={getSolidFromAlphaColor(wm.settings.link.label.border, wm.settings.panel.backgroundColor)}
+                        strokeWidth={2}
+                        rx={(wm.settings.fontSizing.link + 8) / 2}
+                      ></rect>
+                      <text
+                        x={0}
+                        y={
+                          measureText(`${d.sides.Z.currentText}`, wm.settings.fontSizing.link).actualBoundingBoxAscent / 2
+                        }
+                        textAnchor={'middle'}
+                        fontSize={`${wm.settings.fontSizing.link}px`}
+                        fill={wm.settings.link.label.font}
+                      >
+                        {`${d.sides.Z.currentText}`}
+                      </text>
+                    </g>
+                  );
+                })}
+              </g>
+              <g>
+                {nodes.map((d, i) => (
+                  <MapNode
+                    key={d.id}
+                    {...{
+                      node: d,
+                      draggedNode: draggedNode,
+                      selectedNodes: selectedNodes,
+                      wm: wm,
+                      onDrag: (e, position) => {
+                        // Return early if we actually want to just pan the whole weathermap.
+                        if (e.ctrlKey) {
+                          return;
+                        }
 
-                      // Otherwise set our currently dragged node and manage scaling and grid settings.
-                      setDraggedNode(d);
-                      setNodes((prevState) =>
-                        prevState.map((val, index) => {
-                          if (index === i || selectedNodes.find((n) => n.id === nodes[index].id)) {
-                            const scaledPos = getScaledMousePos({ x: position.deltaX, y: position.deltaY });
-                            val.x = Math.round(
-                              wm.settings.panel.grid.enabled
-                                ? wm.nodes[index].position[0] + (val.x + scaledPos.x - wm.nodes[index].position[0])
-                                : val.x + scaledPos.x
-                            );
-                            val.y = Math.round(
-                              wm.settings.panel.grid.enabled
-                                ? wm.nodes[index].position[1] + (val.y + scaledPos.y - wm.nodes[index].position[1])
-                                : val.y + scaledPos.y
-                            );
-                          }
-                          return val;
-                        })
-                      );
-                      tempNodes = nodes.slice();
-                      setLinks(
-                        wm.links.map((d, i) => {
-                          return generateDrawnLink(d, i);
-                        })
-                      );
-                    },
-                    onStop: (e, position) => {
-                      // setDraggedNode(null as unknown as DrawnNode);
-                      setDraggedNode(null as unknown as DrawnNode);
-                      let current: Weathermap = wm;
-                      current.nodes[i].position = [
-                        wm.settings.panel.grid.enabled
-                          ? nearestMultiple(nodes[i].x, wm.settings.panel.grid.size)
-                          : nodes[i].x,
-                        wm.settings.panel.grid.enabled
-                          ? nearestMultiple(nodes[i].y, wm.settings.panel.grid.size)
-                          : nodes[i].y,
-                      ];
-
-                      for (let node of selectedNodes) {
-                        current.nodes[node.index].position = [
+                        // Otherwise set our currently dragged node and manage scaling and grid settings.
+                        setDraggedNode(d);
+                        setNodes((prevState) =>
+                          prevState.map((val, index) => {
+                            if (index === i || selectedNodes.find((n) => n.id === nodes[index].id)) {
+                              const scaledPos = getScaledMousePos({ x: position.deltaX, y: position.deltaY });
+                              val.x = Math.round(
+                                wm.settings.panel.grid.enabled
+                                  ? wm.nodes[index].position[0] + (val.x + scaledPos.x - wm.nodes[index].position[0])
+                                  : val.x + scaledPos.x
+                              );
+                              val.y = Math.round(
+                                wm.settings.panel.grid.enabled
+                                  ? wm.nodes[index].position[1] + (val.y + scaledPos.y - wm.nodes[index].position[1])
+                                  : val.y + scaledPos.y
+                              );
+                            }
+                            return val;
+                          })
+                        );
+                        tempNodes = nodes.slice();
+                        setLinks(
+                          wm.links.map((d, i) => {
+                            return generateDrawnLink(d, i);
+                          })
+                        );
+                      },
+                      onStop: (e, position) => {
+                        // setDraggedNode(null as unknown as DrawnNode);
+                        setDraggedNode(null as unknown as DrawnNode);
+                        let current: Weathermap = wm;
+                        current.nodes[i].position = [
                           wm.settings.panel.grid.enabled
-                            ? nearestMultiple(nodes[node.index].x, wm.settings.panel.grid.size)
-                            : nodes[node.index].x,
+                            ? nearestMultiple(nodes[i].x, wm.settings.panel.grid.size)
+                            : nodes[i].x,
                           wm.settings.panel.grid.enabled
-                            ? nearestMultiple(nodes[node.index].y, wm.settings.panel.grid.size)
-                            : nodes[node.index].y,
+                            ? nearestMultiple(nodes[i].y, wm.settings.panel.grid.size)
+                            : nodes[i].y,
                         ];
-                      }
 
-                      onOptionsChange({
-                        ...options,
-                        weathermap: current,
-                      });
-                    },
-                    onClick: (e) => {
-                      if (e.ctrlKey && isEditMode) {
-                        setSelectedNodes((v) => {
-                          let cIndex = v.findIndex((n) => n.id === tempNodes[i].id);
-                          if (cIndex > -1) {
-                            v.splice(cIndex, 1);
-                          } else {
-                            v.push(tempNodes[i]);
-                          }
-                          return v;
+                        for (let node of selectedNodes) {
+                          current.nodes[node.index].position = [
+                            wm.settings.panel.grid.enabled
+                              ? nearestMultiple(nodes[node.index].x, wm.settings.panel.grid.size)
+                              : nodes[node.index].x,
+                            wm.settings.panel.grid.enabled
+                              ? nearestMultiple(nodes[node.index].y, wm.settings.panel.grid.size)
+                              : nodes[node.index].y,
+                          ];
+                        }
+
+                        onOptionsChange({
+                          ...options,
+                          weathermap: current,
                         });
-                      } else if (!isEditMode && tempNodes[i].dashboardLink) {
-                        window.open(tempNodes[i].dashboardLink, '_blank');
-                      }
-                      // Force an update
-                      onOptionsChange(options);
-                    },
-                    disabled: !isEditMode,
-                    data: data,
-                  }}
-                />
-              ))}
+                      },
+                      onClick: (e) => {
+                        if (e.ctrlKey && isEditMode) {
+                          setSelectedNodes((v) => {
+                            let cIndex = v.findIndex((n) => n.id === tempNodes[i].id);
+                            if (cIndex > -1) {
+                              v.splice(cIndex, 1);
+                            } else {
+                              v.push(tempNodes[i]);
+                            }
+                            return v;
+                          });
+                        } else if (!isEditMode && tempNodes[i].dashboardLink) {
+                          window.open(tempNodes[i].dashboardLink, '_blank');
+                        }
+                        // Force an update
+                        onOptionsChange(options);
+                      },
+                      disabled: !isEditMode,
+                      data: data,
+                    }}
+                  />
+                ))}
+              </g>
             </g>
-          </g>
-        </svg>
-        <div
-          className={cx(
-            styles.timeText,
-            css`
-              color: ${theme.colors.getContrastText(
-                wm.settings.panel.backgroundColor.startsWith('image')
-                  ? wm.settings.panel.backgroundColor.split('|', 3)[1]
-                  : wm.settings.panel.backgroundColor
-              )};
-            `
-          )}
-        >
-          {wm.settings.panel.showTimestamp ? timeRange.to.toLocaleString() : ''}
+          </svg>
+          <div
+            className={cx(
+              styles.timeText,
+              css`
+                color: ${theme.colors.getContrastText(
+                  wm.settings.panel.backgroundColor.startsWith('image')
+                    ? wm.settings.panel.backgroundColor.split('|', 3)[1]
+                    : wm.settings.panel.backgroundColor
+                )};
+              `
+            )}
+          >
+            {wm.settings.panel.showTimestamp ? timeRange.to.toLocaleString() : ''}
+          </div>
         </div>
-      </div>
+      </DndProvider>
     );
   } else {
     return <React.Fragment />;

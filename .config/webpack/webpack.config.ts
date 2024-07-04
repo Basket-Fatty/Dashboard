@@ -195,6 +195,9 @@ const config = async (env): Promise<Configuration> => ({
     // handle resolving "rootDir" paths
     modules: [path.resolve(process.cwd(), 'src'), 'node_modules'],
     unsafeCache: true,
+    alias: {
+      'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+    },
   },
 });
 
