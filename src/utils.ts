@@ -223,6 +223,8 @@ export function generateBasicNode(label: string, position: [number, number], the
       drawInside: false,
     },
     isConnection: false,
+
+    services: [],
   };
 }
 

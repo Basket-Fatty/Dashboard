@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { DrawnNode, Weathermap } from '../types';
 import {
   nearestMultiple,
@@ -12,6 +12,9 @@ import { css } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
 import { DraggableCore, DraggableEventHandler } from 'react-draggable';
 import { PanelData } from '@grafana/data';
+
+import { useDrop } from 'react-dnd';
+import { Service } from '../types';
 
 interface NodeProps {
   node: DrawnNode;
@@ -44,6 +47,22 @@ function calculateRectY(d: DrawnNode, wm: Weathermap) {
   return -calculateRectangleAutoHeight(d, wm) / 2;
 }
 
+// callback function when drop services on nodes
+function sendMessage(service: Service, node: DrawnNode){
+  const confirmed = window.confirm(`Do you want to install ${service.name} on ${node.label}?`);
+  if(confirmed){
+    //send request to back end
+
+    //if successfully installed
+    const [services, setServices] = useState(node.services)
+    setServices([...services, service]);
+
+    //if failed
+
+  }
+
+}
+
 const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   const { node, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data } = props;
   const styles = getStyles();
@@ -67,97 +86,132 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   // Check if this node is selected for dragging
   let nodeIsSelected = selectedNodes.find((n) => n.index === node.index);
 
+  // length of service lists of every nodes
+  let serviceListLen = 5
+  //service square size
+  let smallSquareSize = rectWidth / serviceListLen
+
+  //Drop function
+  const [, drop] = useDrop(() => ({
+    accept: 'SERVICE',
+    drop: (service: Service) => sendMessage(service, node),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  }));
+
   return (
-    <DraggableCore disabled={disabled} onDrag={onDrag} onStop={onStop}>
-      <g
-        cursor={disabled ? (node.dashboardLink ? 'pointer' : '') : 'move'}
-        display={node.label !== undefined ? 'inline' : 'none'}
-        onClick={onClick}
-        transform={`translate(${
-          wm.settings.panel.grid.enabled &&
-          draggedNode &&
-          (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
-            ? nearestMultiple(node.x, wm.settings.panel.grid.size)
-            : node.x
-        },
-                    ${
-                      wm.settings.panel.grid.enabled &&
-                      draggedNode &&
-                      (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
-                        ? nearestMultiple(node.y, wm.settings.panel.grid.size)
-                        : node.y
-                    })`}
-      >
-        {node.label !== '' || node.nodeIcon?.drawInside ? (
-          <React.Fragment>
-            <rect
-              x={rectX}
-              y={rectY}
-              width={rectWidth}
-              height={rectHeight}
-              fill={
-                node.isConnection
-                  ? 'transparent'
-                  : getSolidFromAlphaColor(node.colors.background, wm.settings.panel.backgroundColor)
-              }
-              stroke={
-                nodeIsSelected
-                  ? getSolidFromAlphaColor(node.colors.font, wm.settings.panel.backgroundColor)
-                  : node.isConnection
-                  ? disabled
+      <DraggableCore disabled={disabled} onDrag={onDrag} onStop={onStop}>
+        <g
+
+          // drop style
+          ref={drop}
+
+          cursor={disabled ? (node.dashboardLink ? 'pointer' : '') : 'move'}
+          display={node.label !== undefined ? 'inline' : 'none'}
+          onClick={onClick}
+          transform={`translate(${
+            wm.settings.panel.grid.enabled &&
+            draggedNode &&
+            (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+              ? nearestMultiple(node.x, wm.settings.panel.grid.size)
+              : node.x
+          },
+                      ${
+                        wm.settings.panel.grid.enabled &&
+                        draggedNode &&
+                        (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+                          ? nearestMultiple(node.y, wm.settings.panel.grid.size)
+                          : node.y
+                      })`}
+        >
+          {node.label !== '' || node.nodeIcon?.drawInside ? (
+            <React.Fragment>
+              <rect
+                x={rectX}
+                y={rectY}
+                width={rectWidth}
+                height={rectHeight}
+                fill={
+                  node.isConnection
                     ? 'transparent'
                     : getSolidFromAlphaColor(node.colors.background, wm.settings.panel.backgroundColor)
-                  : getSolidFromAlphaColor(
-                      nodeIsDown ? node.colors.statusDown : node.colors.border,
-                      wm.settings.panel.backgroundColor
-                    )
-              }
-              strokeWidth={node.isConnection ? 2 : 4}
-              rx={6}
-              ry={7}
-              style={{ paintOrder: 'stroke' }}
-            ></rect>
-            <text
-              x={0}
-              y={textY}
-              textAnchor={'middle'}
-              alignmentBaseline={'central'}
-              dominantBaseline={'central'}
-              fill={node.colors.font}
-              className={styles.nodeText}
-              fontSize={node.isConnection ? '6px' : `${wm.settings.fontSizing.node}px`}
-            >
-              {node.label !== undefined && !(node.isConnection && disabled) ? node.label : ''}
-            </text>
-          </React.Fragment>
-        ) : (
-          ''
-        )}
-        {node.nodeIcon && node.nodeIcon.src !== '' ? (
-          <image
-            x={-node.nodeIcon.size.width / 2}
-            y={
-              node.nodeIcon.drawInside
-                ? node.label!.length > 0
-                  ? -(
-                      node.nodeIcon.size.height +
-                      node.nodeIcon.padding.vertical +
-                      measureText(node.label!, wm.settings.fontSizing.node).actualBoundingBoxAscent
-                    ) / 2
+                }
+                stroke={
+                  nodeIsSelected
+                    ? getSolidFromAlphaColor(node.colors.font, wm.settings.panel.backgroundColor)
+                    : node.isConnection
+                    ? disabled
+                      ? 'transparent'
+                      : getSolidFromAlphaColor(node.colors.background, wm.settings.panel.backgroundColor)
+                    : getSolidFromAlphaColor(
+                        nodeIsDown ? node.colors.statusDown : node.colors.border,
+                        wm.settings.panel.backgroundColor
+                      )
+                }
+                strokeWidth={node.isConnection ? 2 : 4}
+                rx={6}
+                ry={7}
+                style={{ paintOrder: 'stroke' }}
+              ></rect>
+
+              {/* draw service list */}
+              {[...Array(serviceListLen)].map((_, index) => (
+                <rect
+                  key={index}
+                  x={rectX + index * smallSquareSize}
+                  y={rectY + rectHeight}
+                  width={smallSquareSize}
+                  height={smallSquareSize}
+                  // fill the small square with service's color
+                  // fill={node.services[index] ? node.services[index].color : 'none'}
+                  fill='none'
+                  stroke="black"
+                  strokeWidth={1}
+                />
+              ))}
+
+              <text
+                x={0}
+                y={textY}
+                textAnchor={'middle'}
+                alignmentBaseline={'central'}
+                dominantBaseline={'central'}
+                fill={node.colors.font}
+                className={styles.nodeText}
+                fontSize={node.isConnection ? '6px' : `${wm.settings.fontSizing.node}px`}
+              >
+                {node.label !== undefined && !(node.isConnection && disabled) ? node.label : ''}
+              </text>
+            </React.Fragment>
+          ) : (
+            ''
+          )}
+          {node.nodeIcon && node.nodeIcon.src !== '' ? (
+            <image
+              x={-node.nodeIcon.size.width / 2}
+              y={
+                node.nodeIcon.drawInside
+                  ? node.label!.length > 0
+                    ? -(
+                        node.nodeIcon.size.height +
+                        node.nodeIcon.padding.vertical +
+                        measureText(node.label!, wm.settings.fontSizing.node).actualBoundingBoxAscent
+                      ) / 2
+                    : -node.nodeIcon.size.height / 2
+                  : node.label!.length > 0
+                  ? textY - node.nodeIcon.size.height - rectHeight / 2 - 1 - node.nodeIcon.padding.vertical
                   : -node.nodeIcon.size.height / 2
-                : node.label!.length > 0
-                ? textY - node.nodeIcon.size.height - rectHeight / 2 - 1 - node.nodeIcon.padding.vertical
-                : -node.nodeIcon.size.height / 2
-            }
-            width={node.nodeIcon.size.width}
-            height={node.nodeIcon.size.height}
-            href={node.nodeIcon.src}
-          />
-        ) : (
-          ''
-        )}
-      </g>
-    </DraggableCore>
+              }
+              width={node.nodeIcon.size.width}
+              height={node.nodeIcon.size.height}
+              href={node.nodeIcon.src}
+            />
+          ) : (
+            ''
+          )}
+        </g>
+      </DraggableCore>
   );
 };
 

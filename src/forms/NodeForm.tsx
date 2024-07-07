@@ -191,6 +191,8 @@ export const NodeForm = ({ value, onChange, context }: Props) => {
         drawInside: false,
       },
       isConnection: false,
+
+      services: [],
     };
     weathermap.nodes.push(node);
     onChange(weathermap);

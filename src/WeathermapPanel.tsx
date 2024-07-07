@@ -783,9 +783,6 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
             >
               {wm.settings.panel.grid.guidesEnabled ? (
                 <>
-
-                {/* Node, Drop Target */}
-
                   <rect
                     x={
                       wm.nodes.length > 0
@@ -803,9 +800,6 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                     height={wm.settings.panel.panelSize.height * Math.pow(1.2, wm.settings.panel.zoomScale) * 4}
                     fill="url(#smallGrid)"
                   />
-
-                {/* service list demonstration */}
-
                 </>
               ) : (
                 ''
