@@ -13,7 +13,7 @@ import { stylesFactory } from '@grafana/ui';
 import { DraggableCore, DraggableEventHandler } from 'react-draggable';
 import { PanelData } from '@grafana/data';
 
-import { useDrop } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import { Service } from '../types';
 
 interface NodeProps {
@@ -87,8 +87,6 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
 
         //if successfully installed
         setServices(services => [...services, service]);
-        //add new service to node's service list
-        //use useEffect
 
         //if failed
 
@@ -155,19 +153,34 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
               ></rect>
 
               {/* draw service list */}
-              {[...Array(serviceListLen)].map((_, index) => (
-                <rect
-                  key={index}
-                  x={rectX + index * smallSquareSize}
-                  y={rectY + rectHeight}
-                  width={smallSquareSize}
-                  height={smallSquareSize}
-                  // fill the small square with service's color
-                  fill={services[index] ? services[index].color : 'none'}
-                  stroke="black"
-                  strokeWidth={1}
-                />
-              ))}
+              {/* {[...Array(serviceListLen)].map((_, index) => { */}
+              {services.map((service, index) => {
+                //Drag to uninstall service
+                const [{ isDragging }, drag] = useDrag({
+                  type: 'INSTALLEDSERVICE',
+                  item: service,
+                  collect: (monitor) => ({
+                    isDragging: monitor.isDragging(),
+                  }),
+                });
+
+                const opacity = isDragging ? 0.4 : 1;
+
+                return(
+                  <rect
+                    ref={drag}
+                    key={index}
+                    x={rectX + index * smallSquareSize}
+                    y={rectY + rectHeight}
+                    width={smallSquareSize}
+                    height={smallSquareSize}
+                    // fill the small square with service's color
+                    fill={services[index] ? services[index].color : 'none'}
+                    stroke="black"
+                    strokeWidth={1}
+                  />
+                );
+              })}
 
               <text
                 x={0}

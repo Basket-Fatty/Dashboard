@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
-import { useDrag, DragSourceMonitor } from 'react-dnd';
+import { useDrag } from 'react-dnd';
 import { Service } from '../types';
 
 interface ServiceItemProps{
@@ -11,7 +11,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({service}) => {
     const [{ isDragging }, drag] = useDrag({
       type: 'SERVICE',
       item: service,
-      collect: (monitor: DragSourceMonitor) => ({
+      collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
     });

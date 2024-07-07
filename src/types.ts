@@ -84,9 +84,6 @@ export interface Node {
   nodeIcon: Icon | null;
   isConnection: boolean;
   statusQuery?: string;
-
-  //installed services
-  services: Service[];
 }
 
 export interface LinkSide {
