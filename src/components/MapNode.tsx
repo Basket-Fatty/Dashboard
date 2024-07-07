@@ -47,22 +47,6 @@ function calculateRectY(d: DrawnNode, wm: Weathermap) {
   return -calculateRectangleAutoHeight(d, wm) / 2;
 }
 
-// callback function when drop services on nodes
-function sendMessage(service: Service, node: DrawnNode){
-  const confirmed = window.confirm(`Do you want to install ${service.name} on ${node.label}?`);
-  if(confirmed){
-    //send request to back end
-
-    //if successfully installed
-    const [services, setServices] = useState(node.services)
-    setServices([...services, service]);
-
-    //if failed
-
-  }
-
-}
-
 const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   const { node, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data } = props;
   const styles = getStyles();
@@ -90,11 +74,26 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   let serviceListLen = 5
   //service square size
   let smallSquareSize = rectWidth / serviceListLen
+  //initialise an empty services list
+  const [services, setServices] = useState<Service[]>([]);
 
   //Drop function
-  const [, drop] = useDrop(() => ({
+  const [{ isOver }, drop] = useDrop(() => ({
     accept: 'SERVICE',
-    drop: (service: Service) => sendMessage(service, node),
+    drop: (service: Service) => {
+      const confirmed = window.confirm(`Do you want to install ${service.name} on ${node.label}?`);
+      if(confirmed){
+        //send request to back end
+
+        //if successfully installed
+        setServices(services => [...services, service]);
+        //add new service to node's service list
+        //use useEffect
+
+        //if failed
+
+      }
+    },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
@@ -164,8 +163,7 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
                   width={smallSquareSize}
                   height={smallSquareSize}
                   // fill the small square with service's color
-                  // fill={node.services[index] ? node.services[index].color : 'none'}
-                  fill='none'
+                  fill={services[index] ? services[index].color : 'none'}
                   stroke="black"
                   strokeWidth={1}
                 />
