@@ -4,7 +4,7 @@ import ServiceItem from './ServiceItem';
 import { Service } from '../types';
 
 //service lists
-const fixedServices: Service[] = [
+const sampleServices: Service[] = [
   { id: 1, name: 'Forwarding', color: '#F40202'},
   { id: 2, name: 'Mirroring', color: '#491AD4'},
   { id: 3, name: 'ACL', color: '#DAC538'},
@@ -12,7 +12,7 @@ const fixedServices: Service[] = [
 ];
 
 const ServiceBar = () => {
-  const [services] = useState(fixedServices);
+  const [services] = useState(sampleServices);
 
   return (
     <div className={css`

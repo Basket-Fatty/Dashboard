@@ -3,11 +3,11 @@ import { css } from 'emotion';
 import { useDrag } from 'react-dnd';
 import { Service } from '../types';
 
-interface ServiceItemProps{
+interface Props{
     service: Service;
 }
 
-const ServiceItem: React.FC<ServiceItemProps> = ({service}) => {
+const ServiceItem: React.FC<Props> = ({service}) => {
     const [{ isDragging }, drag] = useDrag({
       type: 'SERVICE',
       item: service,

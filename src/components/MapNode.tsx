@@ -13,8 +13,9 @@ import { stylesFactory } from '@grafana/ui';
 import { DraggableCore, DraggableEventHandler } from 'react-draggable';
 import { PanelData } from '@grafana/data';
 
-import { useDrag, useDrop } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 import { Service } from '../types';
+import InstalledService from './InstalledService';
 
 interface NodeProps {
   node: DrawnNode;
@@ -98,9 +99,9 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   }));
 
   return (
+    <svg width="800" height="600">
       <DraggableCore disabled={disabled} onDrag={onDrag} onStop={onStop}>
         <g
-
           // drop style
           ref={drop}
 
@@ -113,14 +114,13 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
             (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
               ? nearestMultiple(node.x, wm.settings.panel.grid.size)
               : node.x
-          },
-                      ${
-                        wm.settings.panel.grid.enabled &&
-                        draggedNode &&
-                        (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
-                          ? nearestMultiple(node.y, wm.settings.panel.grid.size)
-                          : node.y
-                      })`}
+          },${
+            wm.settings.panel.grid.enabled &&
+            draggedNode &&
+            (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+              ? nearestMultiple(node.y, wm.settings.panel.grid.size)
+              : node.y
+          })`}
         >
           {node.label !== '' || node.nodeIcon?.drawInside ? (
             <React.Fragment>
@@ -151,37 +151,6 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
                 ry={7}
                 style={{ paintOrder: 'stroke' }}
               ></rect>
-
-              {/* draw service list */}
-              {/* {[...Array(serviceListLen)].map((_, index) => { */}
-              {services.map((service, index) => {
-                //Drag to uninstall service
-                const [{ isDragging }, drag] = useDrag({
-                  type: 'INSTALLEDSERVICE',
-                  item: service,
-                  collect: (monitor) => ({
-                    isDragging: monitor.isDragging(),
-                  }),
-                });
-
-                const opacity = isDragging ? 0.4 : 1;
-
-                return(
-                  <rect
-                    ref={drag}
-                    key={index}
-                    x={rectX + index * smallSquareSize}
-                    y={rectY + rectHeight}
-                    width={smallSquareSize}
-                    height={smallSquareSize}
-                    // fill the small square with service's color
-                    fill={services[index] ? services[index].color : 'none'}
-                    stroke="black"
-                    strokeWidth={1}
-                  />
-                );
-              })}
-
               <text
                 x={0}
                 y={textY}
@@ -194,6 +163,22 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
               >
                 {node.label !== undefined && !(node.isConnection && disabled) ? node.label : ''}
               </text>
+
+              {/* draw service list */}
+              {/* {[...Array(serviceListLen)].map((_, index) => (
+                <rect
+                  key={index}
+                  x={rectX + index * smallSquareSize}
+                  y={rectY + rectHeight}
+                  width={smallSquareSize}
+                  height={smallSquareSize}
+                  // fill the small square with service's color
+                  fill={services[index] ? services[index].color : 'none'}
+                  stroke="black"
+                  strokeWidth={1}
+                />
+              ))} */}
+
             </React.Fragment>
           ) : (
             ''
@@ -221,8 +206,40 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
           ) : (
             ''
           )}
-        </g>
+        </g> 
       </DraggableCore>
+
+      {/* draw service list */}
+      <g
+          cursor='move'
+          display='inline'
+          transform={`translate(${
+            wm.settings.panel.grid.enabled &&
+            draggedNode &&
+            (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+              ? nearestMultiple(node.x, wm.settings.panel.grid.size)
+              : node.x
+          },${
+            wm.settings.panel.grid.enabled &&
+            draggedNode &&
+            (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+              ? nearestMultiple(node.y, wm.settings.panel.grid.size)
+              : node.y
+          })`}
+        >
+        {[...Array(serviceListLen)].map((_, index) => (
+          <InstalledService
+            index={index}
+            rectX={rectX}
+            rectY={rectY}
+            rectHeight={rectHeight}
+            smallSquareSize={smallSquareSize}
+            services={services}
+          />
+        ))}
+      </g>
+
+    </svg>
   );
 };
 
