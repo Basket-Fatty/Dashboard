@@ -27,6 +27,7 @@ interface NodeProps {
   onClick: React.MouseEventHandler<SVGGElement>;
   disabled: boolean;
   data: PanelData;
+  aspectMultiplier: number;
 }
 
 // Calculate the middle of the rectangle for text centering
@@ -49,7 +50,7 @@ function calculateRectY(d: DrawnNode, wm: Weathermap) {
 }
 
 const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
-  const { node, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data } = props;
+  const { node, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } = props;
   const styles = getStyles();
 
   const rectX = useMemo(() => calculateRectX(node, wm), [node, wm]);
@@ -76,22 +77,14 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   //service square size
   let smallSquareSize = rectWidth / serviceListLen
   //initialise an empty services list
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, ] = useState<Service[]>([]);
+  node.services = services;
 
   //Drop function
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'SERVICE',
     drop: (service: Service) => {
-      const confirmed = window.confirm(`Do you want to install ${service.name} on ${node.label}?`);
-      if(confirmed){
-        //send request to back end
-
-        //if successfully installed
-        setServices(services => [...services, service]);
-
-        //if failed
-
-      }
+      services.push(service);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -102,7 +95,7 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
     <svg width="800" height="600">
       <DraggableCore disabled={disabled} onDrag={onDrag} onStop={onStop}>
         <g
-          // drop style
+          // set drop style here
           ref={drop}
 
           cursor={disabled ? (node.dashboardLink ? 'pointer' : '') : 'move'}
@@ -163,22 +156,6 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
               >
                 {node.label !== undefined && !(node.isConnection && disabled) ? node.label : ''}
               </text>
-
-              {/* draw service list */}
-              {/* {[...Array(serviceListLen)].map((_, index) => (
-                <rect
-                  key={index}
-                  x={rectX + index * smallSquareSize}
-                  y={rectY + rectHeight}
-                  width={smallSquareSize}
-                  height={smallSquareSize}
-                  // fill the small square with service's color
-                  fill={services[index] ? services[index].color : 'none'}
-                  stroke="black"
-                  strokeWidth={1}
-                />
-              ))} */}
-
             </React.Fragment>
           ) : (
             ''
@@ -229,6 +206,8 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
         >
         {[...Array(serviceListLen)].map((_, index) => (
           <InstalledService
+            wm={wm}
+            aspectMultiplier={aspectMultiplier}
             index={index}
             rectX={rectX}
             rectY={rectY}

@@ -1143,6 +1143,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                       },
                       disabled: !isEditMode,
                       data: data,
+                      aspectMultiplier: aspectMultiplier,
                     }}
                   />
                 ))}
