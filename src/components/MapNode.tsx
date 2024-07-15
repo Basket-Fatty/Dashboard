@@ -19,6 +19,7 @@ import InstalledService from './InstalledService';
 
 interface NodeProps {
   node: DrawnNode;
+  updateNode: () => void;
   draggedNode: DrawnNode;
   selectedNodes: DrawnNode[];
   wm: Weathermap;
@@ -50,7 +51,7 @@ function calculateRectY(d: DrawnNode, wm: Weathermap) {
 }
 
 const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
-  const { node, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } = props;
+  const { node, updateNode, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } = props;
   const styles = getStyles();
 
   const rectX = useMemo(() => calculateRectX(node, wm), [node, wm]);
@@ -79,12 +80,14 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   //initialise an empty services list
   const [services, ] = useState<Service[]>([]);
   node.services = services;
+  updateNode();
 
   //Drop function
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'SERVICE',
     drop: (service: Service) => {
       services.push(service);
+      updateNode();
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -208,6 +211,7 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
           <InstalledService
             wm={wm}
             aspectMultiplier={aspectMultiplier}
+            updateNode={updateNode}
             index={index}
             rectX={rectX}
             rectY={rectY}

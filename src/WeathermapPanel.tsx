@@ -141,6 +141,11 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
     })
   );
 
+  // callback function for updating nodes from MapNode component
+  const updateNode = () => {
+    wm.nodes = nodes as Node[];
+  };
+
   // To be used to calculate how many links we've drawn
   let tempNodes = nodes.slice();
 
@@ -551,7 +556,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
           )}
         >
 
-          <ServiceBar />
+          <ServiceBar wm={wm} />
 
           {hoveredLink ? (
             <div
@@ -1059,6 +1064,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                     key={d.id}
                     {...{
                       node: d,
+                      updateNode: updateNode,
                       draggedNode: draggedNode,
                       selectedNodes: selectedNodes,
                       wm: wm,

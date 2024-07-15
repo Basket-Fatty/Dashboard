@@ -6,6 +6,7 @@ import { Weathermap } from '../types';
 interface Props{
   wm: Weathermap;
   aspectMultiplier: number,
+  updateNode: () => void;
   index: number;
   rectX: number;
   rectY: number;
@@ -15,7 +16,7 @@ interface Props{
 }
 
 const InstalledService: React.FC<Props> = (props) => {
-  const { wm, aspectMultiplier, index, rectX, rectY, rectHeight, smallSquareSize, services } = props;
+  const { wm, aspectMultiplier, updateNode, index, rectX, rectY, rectHeight, smallSquareSize, services } = props;
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -47,6 +48,7 @@ const InstalledService: React.FC<Props> = (props) => {
     if (inDropZone) {
       //delete current service
       services.splice(index, 1);
+      updateNode();
     }
     //put the rect back to original position
     setPosition({ x: 0, y: 0 });
