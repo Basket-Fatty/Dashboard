@@ -24,6 +24,8 @@ const ServiceItem: React.FC<Props> = ({service}) => {
             opacity: ${opacity};
             margin-right: 10px;
             padding: 5px 10px;
+            color: white;
+            font-size: 16px;
             background-color: ${service.color};
             border: 1px solid #ddd;
             cursor: move;

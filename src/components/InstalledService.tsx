@@ -59,6 +59,10 @@ const InstalledService: React.FC<Props> = (props) => {
   ? { left: -Infinity, top: -Infinity, right: Infinity, bottom: Infinity }
   : { left: position.x, top: position.y, right: position.x, bottom: position.y };
 
+  //calculate the position of texts
+  const centerX = rectX + index * smallSquareSize + smallSquareSize / 2;
+  const centerY = rectY + rectHeight + smallSquareSize / 2 + 1;
+
   return(
     <Draggable
         position={position}
@@ -66,21 +70,34 @@ const InstalledService: React.FC<Props> = (props) => {
         onDrag={handleDrag}
         onStop={handleStop}
       >
-      <rect
-          key={index}
-          x={rectX + index * smallSquareSize}
-          y={rectY + rectHeight}
-          width={smallSquareSize}
-          height={smallSquareSize}
-          // fill the small square with service's color
-          fill={services[index] ? services[index].color : 'none'}
-          stroke="black"
-          strokeWidth={1}
-          style={{
-            opacity: dragging ? 0.5 : 1,
-            cursor: 'move',
-          }}
-      />
+      <g>
+        <rect
+            key={index}
+            x={rectX + index * smallSquareSize}
+            y={rectY + rectHeight}
+            width={smallSquareSize}
+            height={smallSquareSize}
+            // fill the small square with service's color
+            fill={services[index] ? services[index].color : 'none'}
+            stroke="black"
+            strokeWidth={1}
+            style={{
+              opacity: dragging ? 0.5 : 1,
+              cursor: 'move',
+            }}
+        />
+        <text
+            x={centerX}
+            y={centerY}
+            textAnchor={'middle'}
+            alignmentBaseline={'central'}
+            dominantBaseline={'central'}
+            fill={'white'}
+            fontSize={'6px'}
+          >
+            {services[index] ? services[index].abbreviation : ''}
+          </text>
+        </g>
     </Draggable>
   );
 };

@@ -73,7 +73,9 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
   const { options, data, width: width2, height: height2, onOptionsChange, timeRange } = props;
   const styles = getStyles();
   const theme = useTheme2();
-  const wm = options.weathermap;
+  const weathermap = options.weathermap;
+
+  const [wm, ] = useState(weathermap);
 
   if (wm && (!wm.version || wm.version !== CURRENT_VERSION)) {
     onOptionsChange({ weathermap: handleVersionedStateUpdates(wm, theme) });
@@ -145,6 +147,11 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
   const updateNode = () => {
     wm.nodes = nodes as Node[];
   };
+
+  const updateTopology = (nodes: Node[], links: Link[]) => {
+    wm.nodes = nodes;
+    wm.links = links;
+  }
 
   // To be used to calculate how many links we've drawn
   let tempNodes = nodes.slice();
@@ -552,13 +559,15 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
               width: ${width2}px;
               height: ${height2}px;
               position: relative;
+              display: flex;
+              justify-content: center;
             `
           )}
         >
 
-          <ServiceBar wm={wm} />
+          <ServiceBar wm={wm} updateTopology={updateTopology} />
 
-          {hoveredLink ? (
+          {/* {hoveredLink ? (
             <div
               className={css`
                 position: absolute;
@@ -705,7 +714,8 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
           ) : (
             ''
           )}
-          <ColorScale thresholds={wm.scale} settings={wm.settings} />
+          <ColorScale thresholds={wm.scale} settings={wm.settings} /> */}
+
           <svg
             style={{
               position: 'absolute',

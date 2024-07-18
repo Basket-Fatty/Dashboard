@@ -1,40 +1,42 @@
 import { css } from 'emotion';
 import React, { useState } from 'react';
 import ServiceItem from './ServiceItem';
-import { Service, Weathermap } from '../types';
+import { Service, Weathermap, Node, Link } from '../types';
 
 //sample service lists
 const sampleServices: Service[] = [
-  { id: 1, name: 'Forwarding', color: '#F40202'},
-  { id: 2, name: 'Mirroring', color: '#491AD4'},
-  { id: 3, name: 'ACL', color: '#DAC538'},
-  { id: 4, name: 'Asset Discovery', color: '#43D44D'}
+  { id: 1, name: 'Forwarding', color: '#F40202', abbreviation: 'FW'},
+  { id: 2, name: 'Mirroring', color: '#491AD4', abbreviation: 'MR'},
+  { id: 3, name: 'ACL', color: '#DAC538', abbreviation: 'AC'},
+  { id: 4, name: 'Asset Discovery', color: '#43D44D', abbreviation: 'AD'}
 ];
 
 interface Props{
   wm: Weathermap;
+  updateTopology: (nodes: Node[], links: Link[]) => void;
 }
 
-const ServiceBar: React.FC<Props> = ({wm}) => {
+const ServiceBar: React.FC<Props> = (props) => {
+  const { wm, updateTopology } = props;
   const [services] = useState(sampleServices);
 
   //receive and sync the topology information from back end
   const sync = async () => {
     console.log(wm.nodes);
     // try {
-    //   const response = await fetch('/api/topology'); // 假设 API 路径为 /api/topology
+    //   const response = await fetch('/api/topology');
     //   if (!response.ok) {
     //     throw new Error('Network response was not ok');
     //   }
-    //   const data: Topology = await response.json();
-    //   setTopology(data);
+    //   const topology = await response.json();
+    //   updateTopology(topology.nodes, topology.links);
     // } catch (error) {
     //   console.error('Failed to fetch topology:', error);
     // }
   };
 
   //send the topology information to back end
-  const send = async () => {
+  const install = async () => {
     console.log(wm.links);
     // try {
     //   const response = await fetch('/api/send', {
@@ -43,8 +45,8 @@ const ServiceBar: React.FC<Props> = ({wm}) => {
     //       'Content-Type': 'application/json',
     //     },
     //     body: JSON.stringify({
-    //       topology: wm, // 发送当前的拓扑数据
-    //       services: services, // 如果需要发送服务数据
+    //       nodes: wm.nodes,
+    //       links: wm.links
     //     }),
     //   });
 
@@ -74,9 +76,13 @@ const ServiceBar: React.FC<Props> = ({wm}) => {
       display: flex;
       padding: 10px;
       border: 1px solid #ccc;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
     `}>
       <div className={css`
         display: flex;
+        flex-wrap: nowrap;
       `}>
         {services.map((service, index) => (
           <ServiceItem key={index} service={service} />
@@ -85,6 +91,7 @@ const ServiceBar: React.FC<Props> = ({wm}) => {
       <div className={css`
         margin-left: auto;
         display: flex;
+        flex-wrap: nowrap;
       `}>
         <button onClick={sync} className={css`
           margin-right: 10px;
@@ -92,18 +99,22 @@ const ServiceBar: React.FC<Props> = ({wm}) => {
           border: none;
           background-color: #007bff;
           color: white;
+          font-size: 16px;
           cursor: pointer;
+          box-sizing: border-box;
         `}>
           Sync
         </button>
-        <button onClick={send} className={css`
+        <button onClick={install} className={css`
           padding: 5px 10px;
           border: none;
           background-color: #28a745;
           color: white;
+          font-size: 16px;
           cursor: pointer;
+          box-sizing: border-box;
         `}>
-          Send
+          Install
         </button>
       </div>
     </div>
