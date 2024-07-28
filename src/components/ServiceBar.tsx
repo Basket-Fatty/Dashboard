@@ -1,7 +1,7 @@
 import { css } from 'emotion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ServiceItem from './ServiceItem';
-import { Service, Weathermap, Node, Link } from '../types';
+import { Service, DrawnNode, DrawnLink } from '../types';
 
 //sample service lists
 const sampleServices: Service[] = [
@@ -12,56 +12,59 @@ const sampleServices: Service[] = [
 ];
 
 interface Props{
-  wm: Weathermap;
-  updateTopology: (nodes: Node[], links: Link[]) => void;
+  nodes: DrawnNode[];
+  links: DrawnLink[];
+  updateTopology: (nodes: DrawnNode[], links:DrawnLink[]) => void;
 }
 
 const ServiceBar: React.FC<Props> = (props) => {
-  const { wm, updateTopology } = props;
+  const { nodes, links, updateTopology } = props;
   const [services] = useState(sampleServices);
 
   //receive and sync the topology information from back end
   const sync = async () => {
-    console.log(wm.nodes);
-    // try {
-    //   const response = await fetch('/api/topology');
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok');
-    //   }
-    //   const topology = await response.json();
-    //   updateTopology(topology.nodes, topology.links);
-    // } catch (error) {
-    //   console.error('Failed to fetch topology:', error);
-    // }
+    console.log(nodes);
+    try {
+      const response = await fetch('http://localhost:5000/api/data');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const { nodes, links } = await response.json();
+      updateTopology(nodes, links);
+
+    } catch (error) {
+      console.error('Failed to fetch topology:', error);
+    }
   };
+
+  useEffect(() => {
+    sync();
+  }, []);
 
   //send the topology information to back end
   const install = async () => {
-    console.log(wm.links);
-    // try {
-    //   const response = await fetch('/api/send', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       nodes: wm.nodes,
-    //       links: wm.links
-    //     }),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok');
-    //   }
-
-    //   const data = await response.json();
-    //   console.log('Sent data:', data);
-    //   // 根据需要处理返回的数据
-
-    // } catch (error) {
-    //   console.error('Failed to send data:', error);
-    //   // 根据需要处理错误
-    // }
+    try {
+      const response = await fetch('http://localhost:5000/api/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nodes: nodes, 
+          links: links 
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      console.log('Sent data:', data);
+  
+    } catch (error) {
+      console.error('Failed to send data:', error);
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { DrawnNode, Weathermap } from '../types';
 import {
   nearestMultiple,
@@ -19,7 +19,7 @@ import InstalledService from './InstalledService';
 
 interface NodeProps {
   node: DrawnNode;
-  updateNode: () => void;
+  updateWm: () => void;
   draggedNode: DrawnNode;
   selectedNodes: DrawnNode[];
   wm: Weathermap;
@@ -51,7 +51,7 @@ function calculateRectY(d: DrawnNode, wm: Weathermap) {
 }
 
 const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
-  const { node, updateNode, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } = props;
+  const { node, updateWm, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } = props;
   const styles = getStyles();
 
   const rectX = useMemo(() => calculateRectX(node, wm), [node, wm]);
@@ -77,17 +77,23 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   let serviceListLen = 5
   //service square size
   let smallSquareSize = rectWidth / serviceListLen
-  //initialise an empty services list
-  const [services, ] = useState<Service[]>([]);
-  node.services = services;
-  updateNode();
 
+  const [services, setServices] = useState<Service[]>(node.services);
+  
+  useEffect(() => {
+    setServices(node.services);
+  }, [node.services]);
+  
+  useEffect(() => {
+    node.services = services;
+    updateWm();
+  }, [services]);
+  
   //Drop function
-  const [{ isOver }, drop] = useDrop(() => ({
+  const [, drop] = useDrop(() => ({
     accept: 'SERVICE',
     drop: (service: Service) => {
-      services.push(service);
-      updateNode();
+      setServices(prevServices => [...prevServices, service]);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -211,13 +217,13 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
           <InstalledService
             wm={wm}
             aspectMultiplier={aspectMultiplier}
-            updateNode={updateNode}
             index={index}
             rectX={rectX}
             rectY={rectY}
             rectHeight={rectHeight}
             smallSquareSize={smallSquareSize}
             services={services}
+            setServices={setServices}
           />
         ))}
       </g>

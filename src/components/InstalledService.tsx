@@ -6,17 +6,17 @@ import { Weathermap } from '../types';
 interface Props{
   wm: Weathermap;
   aspectMultiplier: number,
-  updateNode: () => void;
   index: number;
   rectX: number;
   rectY: number;
   rectHeight: number;
   smallSquareSize: number;
   services: Service[];
+  setServices: React.Dispatch<React.SetStateAction<Service[]>>;
 }
 
 const InstalledService: React.FC<Props> = (props) => {
-  const { wm, aspectMultiplier, updateNode, index, rectX, rectY, rectHeight, smallSquareSize, services } = props;
+  const { wm, aspectMultiplier, index, rectX, rectY, rectHeight, smallSquareSize, services, setServices } = props;
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -47,8 +47,7 @@ const InstalledService: React.FC<Props> = (props) => {
     setDragging(false);
     if (inDropZone) {
       //delete current service
-      services.splice(index, 1);
-      updateNode();
+      setServices(prevServices => prevServices.filter((_, i) => i !== index));
     }
     //put the rect back to original position
     setPosition({ x: 0, y: 0 });

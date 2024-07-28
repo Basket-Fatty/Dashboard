@@ -73,9 +73,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
   const { options, data, width: width2, height: height2, onOptionsChange, timeRange } = props;
   const styles = getStyles();
   const theme = useTheme2();
-  const weathermap = options.weathermap;
-
-  const [wm, ] = useState(weathermap);
+  const wm = options.weathermap;
 
   if (wm && (!wm.version || wm.version !== CURRENT_VERSION)) {
     onOptionsChange({ weathermap: handleVersionedStateUpdates(wm, theme) });
@@ -144,13 +142,14 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
   );
 
   // callback function for updating nodes from MapNode component
-  const updateNode = () => {
+  const updateWm = () => {
     wm.nodes = nodes as Node[];
   };
 
-  const updateTopology = (nodes: Node[], links: Link[]) => {
-    wm.nodes = nodes;
-    wm.links = links;
+  const updateTopology = (newNodes: DrawnNode[], newLinks:DrawnLink[]) => {
+    setNodes(newNodes);
+    setLinks(newLinks);
+    updateWm();
   }
 
   // To be used to calculate how many links we've drawn
@@ -565,7 +564,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
           )}
         >
 
-          <ServiceBar wm={wm} updateTopology={updateTopology} />
+          <ServiceBar nodes={nodes} links={links} updateTopology={updateTopology} />
 
           {/* {hoveredLink ? (
             <div
@@ -883,7 +882,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                         }}
                         style={d.sides.A.dashboardLink.length > 0 ? { cursor: 'pointer' } : {}}
                       ></line>
-                      {tempNodes[d.source.index].isConnection ? (
+                      {/* {tempNodes[d.source.index].isConnection ? (
                         <circle
                           cx={d.lineStartA.x}
                           cy={d.lineStartA.y}
@@ -893,7 +892,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                         ></circle>
                       ) : (
                         ''
-                      )}
+                      )} */}
                       {tempNodes[d.target.index].isConnection ? (
                         ''
                       ) : (
@@ -964,7 +963,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                   );
                 })}
               </g>
-              <g>
+              {/* <g>
                 {links.map((d, i) => {
                   if (d.nodes[0].id === d.nodes[1].id) {
                     return;
@@ -1067,14 +1066,14 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
                     </g>
                   );
                 })}
-              </g>
+              </g> */}
               <g>
                 {nodes.map((d, i) => (
                   <MapNode
                     key={d.id}
                     {...{
                       node: d,
-                      updateNode: updateNode,
+                      updateWm: updateWm,
                       draggedNode: draggedNode,
                       selectedNodes: selectedNodes,
                       wm: wm,
