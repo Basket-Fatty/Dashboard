@@ -146,9 +146,8 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
     wm.nodes = nodes as Node[];
   };
 
-  const updateTopology = (newNodes: DrawnNode[], newLinks:DrawnLink[]) => {
+  const updateTopology = (newNodes: DrawnNode[]) => {
     setNodes(newNodes);
-    setLinks(newLinks);
     updateWm();
   }
 
@@ -564,7 +563,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
           )}
         >
 
-          <ServiceBar nodes={nodes} links={links} updateTopology={updateTopology} />
+          <ServiceBar nodes={nodes} updateTopology={updateTopology} />
 
           {/* {hoveredLink ? (
             <div

@@ -1,7 +1,7 @@
 import { css } from 'emotion';
 import React, { useState, useEffect } from 'react';
 import ServiceItem from './ServiceItem';
-import { Service, DrawnNode, DrawnLink } from '../types';
+import { Service, DrawnNode } from '../types';
 
 //sample service lists
 const sampleServices: Service[] = [
@@ -13,24 +13,22 @@ const sampleServices: Service[] = [
 
 interface Props{
   nodes: DrawnNode[];
-  links: DrawnLink[];
-  updateTopology: (nodes: DrawnNode[], links:DrawnLink[]) => void;
+  updateTopology: (nodes: DrawnNode[]) => void;
 }
 
 const ServiceBar: React.FC<Props> = (props) => {
-  const { nodes, links, updateTopology } = props;
+  const { nodes, updateTopology } = props;
   const [services] = useState(sampleServices);
 
   //receive and sync the topology information from back end
   const sync = async () => {
-    console.log(nodes);
     try {
       const response = await fetch('http://localhost:5000/api/data');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      const { nodes, links } = await response.json();
-      updateTopology(nodes, links);
+      const nodes = await response.json();
+      updateTopology(nodes);
 
     } catch (error) {
       console.error('Failed to fetch topology:', error);
@@ -51,7 +49,6 @@ const ServiceBar: React.FC<Props> = (props) => {
         },
         body: JSON.stringify({
           nodes: nodes, 
-          links: links 
         }),
       });
   
