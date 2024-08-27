@@ -12,7 +12,3 @@ services:
     volumes:
       - ./dist:/var/lib/grafana/plugins/knightss27-weathermap-panel
       - ./provisioning:/etc/grafana/provisioning
-      - grafana-storage:/var/lib/grafana
-
-volumes:
-  grafana-storage:

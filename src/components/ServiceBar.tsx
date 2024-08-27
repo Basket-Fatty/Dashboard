@@ -1,7 +1,7 @@
 import { css } from 'emotion';
 import React, { useState, useEffect } from 'react';
 import ServiceItem from './ServiceItem';
-import { Service, DrawnNode } from '../types';
+import { Service, DrawnNode, DrawnLink } from '../types';
 
 //sample service lists
 const sampleServices: Service[] = [
@@ -13,11 +13,12 @@ const sampleServices: Service[] = [
 
 interface Props{
   nodes: DrawnNode[];
-  updateTopology: (nodes: DrawnNode[]) => void;
+  links: DrawnLink[];
+  updateTopology: (nodes: DrawnNode[], links: DrawnLink[]) => void;
 }
 
 const ServiceBar: React.FC<Props> = (props) => {
-  const { nodes, updateTopology } = props;
+  const { nodes, links, updateTopology } = props;
   const [services] = useState(sampleServices);
 
   //receive and sync the topology information from back end
@@ -27,17 +28,19 @@ const ServiceBar: React.FC<Props> = (props) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      const nodes = await response.json();
-      updateTopology(nodes);
+      const data = await response.json();
+      const nodes = data.nodes;
+      const links = data.links;
 
+      updateTopology(nodes, links);
     } catch (error) {
       console.error('Failed to fetch topology:', error);
     }
   };
 
-  useEffect(() => {
-    sync();
-  }, []);
+  // useEffect(() => {
+  //   sync();
+  // }, []);
 
   //send the topology information to back end
   const install = async () => {
@@ -49,6 +52,7 @@ const ServiceBar: React.FC<Props> = (props) => {
         },
         body: JSON.stringify({
           nodes: nodes, 
+          links: links,
         }),
       });
   
