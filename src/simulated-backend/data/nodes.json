@@ -1,0 +1,650 @@
+[
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 2,
+                "numFilledLinks": 2
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 1,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "cb56c47c-4b2d-437b-9ff1-36866e25c0a7",
+        "index": 0,
+        "isConnection": false,
+        "label": "WAN R1",
+        "labelWidth": 36.5625,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            180,
+            350
+        ],
+        "services": [
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 180,
+        "y": 350
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 2,
+                "numFilledLinks": 2
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "4d0a741f-c7e7-493b-a39f-edb168a9b8dd",
+        "index": 1,
+        "isConnection": false,
+        "label": "WAN R2",
+        "labelWidth": 36.5625,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            420,
+            350
+        ],
+        "services": [
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 420,
+        "y": 350
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 3,
+                "numFilledLinks": 3
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "18d97705-6d43-40d8-934e-cea8059944a6",
+        "index": 2,
+        "isConnection": false,
+        "label": "Control SW",
+        "labelWidth": 49.6923828125,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            300,
+            250
+        ],
+        "services": [
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 300,
+        "y": 250
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 1,
+                "numFilledLinks": 1
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "55eb54b9-d8fd-4c77-8932-c97675735a04",
+        "index": 3,
+        "isConnection": false,
+        "label": "DSS1 GW",
+        "labelWidth": 42.197265625,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            60,
+            350
+        ],
+        "services": [
+            {
+                "abbreviation": "MR",
+                "color": "#491AD4",
+                "id": 2,
+                "name": "Mirroring"
+            },
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 60,
+        "y": 350
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 2,
+                "numFilledLinks": 2
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "b2135ccd-fe2a-4077-9f0a-7cf3e2cd81bd",
+        "index": 4,
+        "isConnection": false,
+        "label": "DPS GW",
+        "labelWidth": 36.9580078125,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            300,
+            350
+        ],
+        "services": [
+            {
+                "abbreviation": "AC",
+                "color": "#DAC538",
+                "id": 3,
+                "name": "ACL"
+            },
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 300,
+        "y": 350
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 1,
+                "numFilledLinks": 1
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "10421591-ae3c-4639-8584-c0576a9ddf42",
+        "index": 5,
+        "isConnection": false,
+        "label": "DSS2 GW",
+        "labelWidth": 42.197265625,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            540,
+            350
+        ],
+        "services": [
+            {
+                "abbreviation": "AD",
+                "color": "#43D44D",
+                "id": 4,
+                "name": "Asset Discovery"
+            },
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 540,
+        "y": 350
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 1,
+                "numFilledLinks": 1
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "59fb6c1e-feee-45df-8ee1-0cf9ae5c1056",
+        "index": 6,
+        "isConnection": false,
+        "label": "DPS HV",
+        "labelWidth": 34.765625,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            180,
+            450
+        ],
+        "services": [
+            {
+                "abbreviation": "AD",
+                "color": "#43D44D",
+                "id": 4,
+                "name": "Asset Discovery"
+            },
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 180,
+        "y": 450
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 3,
+                "numFilledLinks": 3
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "a9204766-c742-430d-9646-dc1ff1d27a78",
+        "index": 7,
+        "isConnection": false,
+        "label": "DPS RS",
+        "labelWidth": 33.3642578125,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            300,
+            450
+        ],
+        "services": [
+            {
+                "abbreviation": "AD",
+                "color": "#43D44D",
+                "id": 4,
+                "name": "Asset Discovery"
+            },
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 300,
+        "y": 450
+    },
+    {
+        "anchors": {
+            "0": {
+                "numLinks": 1,
+                "numFilledLinks": 1
+            },
+            "1": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "2": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "3": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            },
+            "4": {
+                "numLinks": 0,
+                "numFilledLinks": 0
+            }
+        },
+        "colors": {
+            "background": "rgba(204, 204, 220, 0.10)",
+            "border": "rgba(204, 204, 220, 0.08)",
+            "font": "rgb(204, 204, 220)",
+            "statusDown": "#ff0000"
+        },
+        "compactVerticalLinks": false,
+        "id": "1be4642d-5056-4348-a1dc-532d9e084942",
+        "index": 8,
+        "isConnection": false,
+        "label": "DPS MV",
+        "labelWidth": 36.3671875,
+        "nodeIcon": {
+            "drawInside": true,
+            "name": "cisco/layer-3-switch",
+            "padding": {
+                "horizontal": 0,
+                "vertical": 5
+            },
+            "size": {
+                "height": 30,
+                "width": 30
+            },
+            "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+        },
+        "padding": {
+            "horizontal": 10,
+            "vertical": 4
+        },
+        "position": [
+            420,
+            450
+        ],
+        "services": [
+            {
+                "abbreviation": "AD",
+                "color": "#43D44D",
+                "id": 4,
+                "name": "Asset Discovery"
+            },
+            {
+                "abbreviation": "FW",
+                "color": "#F40202",
+                "id": 1,
+                "name": "Forwarding"
+            }
+        ],
+        "useConstantSpacing": false,
+        "x": 420,
+        "y": 450
+    }
+]
