@@ -38,9 +38,9 @@ const ServiceBar: React.FC<Props> = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   sync();
-  // }, []);
+  useEffect(() => {
+    sync();
+  }, []);
 
   //send the topology information to back end
   const install = async () => {

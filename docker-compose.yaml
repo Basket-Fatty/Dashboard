@@ -1,8 +1,8 @@
-version: '3.0'
+version: '3.8'
 
 services:
   grafana:
-    container_name: 'knightss27-weathermap-panel'
+    container_name: 'Grafana-test'
     build:
       context: ./.config
       args:
@@ -10,5 +10,27 @@ services:
     ports:
       - 3000:3000/tcp
     volumes:
-      - ./dist:/var/lib/grafana/plugins/knightss27-weathermap-panel
+      - ./dist:/var/lib/grafana/plugins/Grafana
       - ./provisioning:/etc/grafana/provisioning
+
+  flask-app:
+    container_name: 'backend'
+    build: ./src/simulated-backend
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+    depends_on:
+      - influxdb
+    volumes:
+      - ./src/simulated-backend/data:/app/data
+
+  influxdb:
+    container_name: 'influxdb'
+    image: influxdb:latest
+    ports:
+      - "8086:8086"
+    environment:
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+    volumes:
+      - ./src/simulated-backend/influxdb_data:/var/lib/influxdb2

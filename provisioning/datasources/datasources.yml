@@ -1,0 +1,15 @@
+apiVersion: 1
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086/
+    database: "Dashboard"
+    jsonData:
+      httpMode: GET
+      timeInterval: "5s"
+    basicAuth: true
+    basicAuthUser: ""
+    secureJsonData:
+      basicAuthPassword: WdmBIzzFAZ1Y1YmyH9ngbnwc9-l45gMz4zVuB9bSgobLg-OImV7ju1dF_DP4wm4vWgeAMsD4IkHB9zV90N25NA==
+    isDefault: true
