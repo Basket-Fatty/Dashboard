@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { DrawnNode, Weathermap } from '../types';
+import { DrawnNode, Weathermap, Service } from '../types';
 import {
   nearestMultiple,
   measureText,
@@ -14,7 +14,6 @@ import { DraggableCore, DraggableEventHandler } from 'react-draggable';
 import { PanelData } from '@grafana/data';
 
 import { useDrop } from 'react-dnd';
-import { Service } from '../types';
 import InstalledService from './InstalledService';
 
 interface NodeProps {
@@ -51,7 +50,8 @@ function calculateRectY(d: DrawnNode, wm: Weathermap) {
 }
 
 const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
-  const { node, updateWm, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } = props;
+  const { node, updateWm, draggedNode, selectedNodes, wm, onDrag, onStop, onClick, disabled, data, aspectMultiplier } =
+    props;
   const styles = getStyles();
 
   const rectX = useMemo(() => calculateRectX(node, wm), [node, wm]);
@@ -74,26 +74,26 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
   let nodeIsSelected = selectedNodes.find((n) => n.index === node.index);
 
   // length of service lists of every nodes
-  let serviceListLen = 5
+  let serviceListLen = 5;
   //service square size
-  let smallSquareSize = rectWidth / serviceListLen
+  let smallSquareSize = rectWidth / serviceListLen;
 
   const [services, setServices] = useState<Service[]>(node.services);
-  
+
   useEffect(() => {
     setServices(node.services);
   }, [node.services]);
-  
+
   useEffect(() => {
     node.services = services;
     updateWm();
-  }, [services]);
-  
+  }, [services, node, updateWm]);
+
   //Drop function
   const [, drop] = useDrop(() => ({
     accept: 'SERVICE',
     drop: (service: Service) => {
-      setServices(prevServices => [...prevServices, service]);
+      setServices((prevServices) => [...prevServices, service]);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -106,7 +106,6 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
         <g
           // set drop style here
           ref={drop}
-
           cursor={disabled ? (node.dashboardLink ? 'pointer' : '') : 'move'}
           display={node.label !== undefined ? 'inline' : 'none'}
           onClick={onClick}
@@ -192,29 +191,30 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
           ) : (
             ''
           )}
-        </g> 
+        </g>
       </DraggableCore>
 
       {/* draw service list */}
       <g
-          cursor='move'
-          display='inline'
-          transform={`translate(${
-            wm.settings.panel.grid.enabled &&
-            draggedNode &&
-            (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
-              ? nearestMultiple(node.x, wm.settings.panel.grid.size)
-              : node.x
-          },${
-            wm.settings.panel.grid.enabled &&
-            draggedNode &&
-            (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
-              ? nearestMultiple(node.y, wm.settings.panel.grid.size)
-              : node.y
-          })`}
-        >
+        cursor="move"
+        display="inline"
+        transform={`translate(${
+          wm.settings.panel.grid.enabled &&
+          draggedNode &&
+          (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+            ? nearestMultiple(node.x, wm.settings.panel.grid.size)
+            : node.x
+        },${
+          wm.settings.panel.grid.enabled &&
+          draggedNode &&
+          (draggedNode.index === node.index || selectedNodes.find((n) => n.index === node.index))
+            ? nearestMultiple(node.y, wm.settings.panel.grid.size)
+            : node.y
+        })`}
+      >
         {[...Array(serviceListLen)].map((_, index) => (
           <InstalledService
+            key={index}
             wm={wm}
             aspectMultiplier={aspectMultiplier}
             index={index}
@@ -227,7 +227,6 @@ const MapNode: React.FC<NodeProps> = (props: NodeProps) => {
           />
         ))}
       </g>
-
     </svg>
   );
 };

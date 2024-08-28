@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { DataFrame, Field, getTimeZone, getValueFormat, PanelProps, Vector } from '@grafana/data';
+// import { DataFrame, Field, getTimeZone, getValueFormat, PanelProps, Vector } from '@grafana/data';
+import { getValueFormat, PanelProps } from '@grafana/data';
 import {
   Anchor,
   DrawnLink,
@@ -15,11 +16,11 @@ import {
 } from 'types';
 import { css, cx } from 'emotion';
 import {
-  LegendDisplayMode,
+  // LegendDisplayMode,
   stylesFactory,
-  TimeSeries,
-  TooltipDisplayMode,
-  TooltipPlugin,
+  // TimeSeries,
+  // TooltipDisplayMode,
+  // TooltipPlugin,
   useTheme2,
 } from '@grafana/ui';
 import {
@@ -33,7 +34,7 @@ import {
   getDataFrameName,
 } from 'utils';
 import MapNode from './components/MapNode';
-import ColorScale from 'components/ColorScale';
+// import ColorScale from 'components/ColorScale';
 
 import ServiceBar from './components/ServiceBar';
 import { DndProvider } from 'react-dnd';
@@ -58,13 +59,13 @@ function generateDrawnNode(d: Node, i: number, wm: Weathermap): DrawnNode {
 
 // Format link values as the proper prefix of bits
 const getlinkValueFormatter = (fmt_id: string) => getValueFormat(fmt_id);
-const getlinkGraphFormatter =
-  (fmt_id: string) =>
-  (v: any): string => {
-    let formatter = getValueFormat(fmt_id);
-    let formattedValue = formatter(v);
-    return `${formattedValue.text} ${formattedValue.suffix}`;
-  };
+// const getlinkGraphFormatter =
+//   (fmt_id: string) =>
+//   (v: any): string => {
+//     let formatter = getValueFormat(fmt_id);
+//     let formattedValue = formatter(v);
+//     return `${formattedValue.text} ${formattedValue.suffix}`;
+//   };
 
 /**
  * Weathermap panel component.
@@ -115,11 +116,11 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
   }
 
   // Get a point a percentage of the way between two nodes
-  function getPercentPoint(source: Position, target: Position, percent: number): Position {
-    const newX = target.x + (source.x - target.x) * percent;
-    const newY = target.y + (source.y - target.y) * percent;
-    return { x: newX, y: newY };
-  }
+  // function getPercentPoint(source: Position, target: Position, percent: number): Position {
+  //   const newX = target.x + (source.x - target.x) * percent;
+  //   const newY = target.y + (source.y - target.y) * percent;
+  //   return { x: newX, y: newY };
+  // }
 
   // Find the points that create the two other points of a triangle for the arrow's tip
   function getArrowPolygon(_p1: any, _p2: any, height: number, width: number) {
@@ -151,7 +152,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
     setNodes(newNodes);
     setLinks(newLinks);
     updateWm();
-  }
+  };
 
   // To be used to calculate how many links we've drawn
   let tempNodes = nodes.slice();
@@ -467,7 +468,7 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
     }
   };
 
-  const [hoveredLink, setHoveredLink] = useState(null as unknown as HoveredLink);
+  const [, setHoveredLink] = useState(null as unknown as HoveredLink);
 
   const handleLinkHover = (d: DrawnLink, side: 'A' | 'Z', e: any) => {
     if (e.shiftKey) {
@@ -534,20 +535,20 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
     setHoveredLink(null as unknown as HoveredLink);
   };
 
-  const filteredGraphQueries = data.series.filter((frame) => {
-    if (!hoveredLink) {
-      return;
-    }
+  // const filteredGraphQueries = data.series.filter((frame) => {
+  //   if (!hoveredLink) {
+  //     return;
+  //   }
 
-    let displayName = null;
-    try {
-      displayName = getDataFrameName(frame, data.series);
-    } catch (e) {
-      console.warn('Network Weathermap: Error while attempting to access query data.', e);
-    }
+  //   let displayName = null;
+  //   try {
+  //     displayName = getDataFrameName(frame, data.series);
+  //   } catch (e) {
+  //     console.warn('Network Weathermap: Error while attempting to access query data.', e);
+  //   }
 
-    return displayName === hoveredLink.link.sides.A.query || displayName === hoveredLink.link.sides.Z.query;
-  });
+  //   return displayName === hoveredLink.link.sides.A.query || displayName === hoveredLink.link.sides.Z.query;
+  // });
 
   if (wm) {
     return (
@@ -564,7 +565,6 @@ export const WeathermapPanel: React.FC<PanelProps<SimpleOptions>> = (props: Pane
             `
           )}
         >
-
           <ServiceBar nodes={nodes} links={links} updateTopology={updateTopology} />
 
           {/* {hoveredLink ? (
