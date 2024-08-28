@@ -12,6 +12,7 @@ services:
     volumes:
       - ./dist:/var/lib/grafana/plugins/Grafana
       - ./provisioning:/etc/grafana/provisioning
+      - ./share/defaults.ini:/usr/share/grafana/conf/defaults.ini
 
   flask-app:
     container_name: 'backend'

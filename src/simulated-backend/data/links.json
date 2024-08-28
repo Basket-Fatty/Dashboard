@@ -1,41 +1,79 @@
 [
     {
+        "arrowCenterA": {
+            "x": 241.53644255919474,
+            "y": 298.719631200671
+        },
+        "arrowCenterZ": {
+            "x": 238.46355744080526,
+            "y": 301.280368799329
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 246.65791775651059,
+                "y": 289.24490208563674
+            },
+            "p2": {
+                "x": 251.7793929538264,
+                "y": 295.3906723224157
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 233.34208224348941,
+                "y": 310.75509791436326
+            },
+            "p2": {
+                "x": 228.2206070461736,
+                "y": 304.6093276775843
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
         "id": "1eed9bdd-dfa1-4039-a033-62e5e519da2d",
+        "index": 0,
+        "lineEndA": {
+            "x": 249.21865535516852,
+            "y": 292.3177872040262
+        },
+        "lineEndZ": {
+            "x": 230.78134464483148,
+            "y": 307.6822127959738
+        },
+        "lineStartA": {
+            "x": 300,
+            "y": 250
+        },
+        "lineStartZ": {
+            "x": 180,
+            "y": 350
+        },
         "nodes": [
             {
-                "id": "18d97705-6d43-40d8-934e-cea8059944a6",
-                "position": [
-                    300,
-                    250
-                ],
-                "label": "Control SW",
                 "anchors": {
                     "0": {
-                        "numLinks": 3,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 3
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -43,54 +81,66 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
+                "compactVerticalLinks": false,
+                "id": "18d97705-6d43-40d8-934e-cea8059944a6",
+                "index": 2,
                 "isConnection": false,
+                "label": "Control SW",
+                "labelWidth": 49.6923828125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
+                "position": [
+                    300,
+                    250
+                ],
                 "services": [
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 2,
+                "useConstantSpacing": false,
                 "x": 295,
-                "y": 271,
-                "labelWidth": 49.6923828125
+                "y": 271
             },
             {
                 "anchors": {
                     "0": {
-                        "numLinks": 2,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 2
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 1,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 1
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
                 },
                 "colors": {
@@ -113,8 +163,8 @@
                         "vertical": 5
                     },
                     "size": {
-                        "width": 30,
-                        "height": 30
+                        "height": 30,
+                        "width": 30
                     },
                     "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
                 },
@@ -128,10 +178,10 @@
                 ],
                 "services": [
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
                 "useConstantSpacing": false,
@@ -139,38 +189,31 @@
                 "y": 365
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 0,
         "source": {
             "anchors": {
                 "0": {
@@ -239,6 +282,7 @@
             "x": 300,
             "y": 250
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -306,76 +350,82 @@
             "useConstantSpacing": false,
             "x": 180,
             "y": 350
-        },
-        "lineStartA": {
-            "x": 300,
-            "y": 250
-        },
-        "lineStartZ": {
-            "x": 180,
-            "y": 350
-        },
-        "lineEndA": {
-            "x": 249.21865535516852,
-            "y": 292.3177872040262
-        },
-        "arrowCenterA": {
-            "x": 241.53644255919474,
-            "y": 298.719631200671
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 246.65791775651059,
-                "y": 289.24490208563674
-            },
-            "p2": {
-                "x": 251.7793929538264,
-                "y": 295.3906723224157
-            }
-        },
-        "lineEndZ": {
-            "x": 230.78134464483148,
-            "y": 307.6822127959738
-        },
-        "arrowCenterZ": {
-            "x": 238.46355744080526,
-            "y": 301.280368799329
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 233.34208224348941,
-                "y": 310.75509791436326
-            },
-            "p2": {
-                "x": 228.2206070461736,
-                "y": 304.6093276775843
-            }
         }
     },
     {
+        "arrowCenterA": {
+            "x": 122,
+            "y": 350
+        },
+        "arrowCenterZ": {
+            "x": 118,
+            "y": 350
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 132,
+                "y": 346
+            },
+            "p2": {
+                "x": 132,
+                "y": 354
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 108,
+                "y": 354
+            },
+            "p2": {
+                "x": 108,
+                "y": 346
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
         "id": "3565c646-9077-4483-ac11-a93b6e55e7d2",
+        "index": 1,
+        "lineEndA": {
+            "x": 132,
+            "y": 350
+        },
+        "lineEndZ": {
+            "x": 108,
+            "y": 350
+        },
+        "lineStartA": {
+            "x": 180,
+            "y": 350
+        },
+        "lineStartZ": {
+            "x": 60,
+            "y": 350
+        },
         "nodes": [
             {
                 "anchors": {
                     "0": {
-                        "numLinks": 2,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 2
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 1,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 1
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
                 },
                 "colors": {
@@ -398,8 +448,8 @@
                         "vertical": 5
                     },
                     "size": {
-                        "width": 30,
-                        "height": 30
+                        "height": 30,
+                        "width": 30
                     },
                     "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
                 },
@@ -413,10 +463,10 @@
                 ],
                 "services": [
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
                 "useConstantSpacing": false,
@@ -424,39 +474,27 @@
                 "y": 365
             },
             {
-                "id": "55eb54b9-d8fd-4c77-8932-c97675735a04",
-                "position": [
-                    60,
-                    350
-                ],
-                "label": "DSS1 GW",
                 "anchors": {
                     "0": {
-                        "numLinks": 1,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 1
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -464,72 +502,77 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
+                "compactVerticalLinks": false,
+                "id": "55eb54b9-d8fd-4c77-8932-c97675735a04",
+                "index": 3,
                 "isConnection": false,
+                "label": "DSS1 GW",
+                "labelWidth": 42.197265625,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
+                "position": [
+                    60,
+                    350
+                ],
                 "services": [
                     {
-                        "id": 2,
-                        "name": "Mirroring",
+                        "abbreviation": "MR",
                         "color": "#491AD4",
-                        "abbreviation": "MR"
+                        "id": 2,
+                        "name": "Mirroring"
                     },
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 3,
+                "useConstantSpacing": false,
                 "x": 47,
-                "y": 368,
-                "labelWidth": 42.197265625
+                "y": 368
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 1,
         "source": {
             "anchors": {
                 "0": {
@@ -598,6 +641,7 @@
             "x": 180,
             "y": 350
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -671,89 +715,151 @@
             "useConstantSpacing": false,
             "x": 60,
             "y": 350
-        },
-        "lineStartA": {
-            "x": 180,
-            "y": 350
-        },
-        "lineStartZ": {
-            "x": 60,
-            "y": 350
-        },
-        "lineEndA": {
-            "x": 132,
-            "y": 350
-        },
-        "arrowCenterA": {
-            "x": 122,
-            "y": 350
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 132,
-                "y": 346
-            },
-            "p2": {
-                "x": 132,
-                "y": 354
-            }
-        },
-        "lineEndZ": {
-            "x": 108,
-            "y": 350
-        },
-        "arrowCenterZ": {
-            "x": 118,
-            "y": 350
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 108,
-                "y": 354
-            },
-            "p2": {
-                "x": 108,
-                "y": 346
-            }
         }
     },
     {
+        "arrowCenterA": {
+            "x": 300,
+            "y": 298
+        },
+        "arrowCenterZ": {
+            "x": 300,
+            "y": 302
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 296,
+                "y": 288
+            },
+            "p2": {
+                "x": 304,
+                "y": 288
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 304,
+                "y": 312
+            },
+            "p2": {
+                "x": 296,
+                "y": 312
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
         "id": "cde59dcc-4c85-4a93-9491-c79020f37ca6",
+        "index": 2,
+        "lineEndA": {
+            "x": 300,
+            "y": 288
+        },
+        "lineEndZ": {
+            "x": 300,
+            "y": 312
+        },
+        "lineStartA": {
+            "x": 300,
+            "y": 250
+        },
+        "lineStartZ": {
+            "x": 300,
+            "y": 350
+        },
         "nodes": [
             {
+                "anchors": {
+                    "0": {
+                        "numFilledLinks": 0,
+                        "numLinks": 3
+                    },
+                    "1": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "2": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "3": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "4": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    }
+                },
+                "colors": {
+                    "background": "rgba(204, 204, 220, 0.10)",
+                    "border": "rgba(204, 204, 220, 0.08)",
+                    "font": "rgb(204, 204, 220)",
+                    "statusDown": "#ff0000"
+                },
+                "compactVerticalLinks": false,
                 "id": "18d97705-6d43-40d8-934e-cea8059944a6",
+                "index": 2,
+                "isConnection": false,
+                "label": "Control SW",
+                "labelWidth": 49.6923828125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     300,
                     250
                 ],
-                "label": "Control SW",
+                "services": [
+                    {
+                        "abbreviation": "FW",
+                        "color": "#F40202",
+                        "id": 1,
+                        "name": "Forwarding"
+                    }
+                ],
+                "useConstantSpacing": false,
+                "x": 295,
+                "y": 271
+            },
+            {
                 "anchors": {
                     "0": {
-                        "numLinks": 3,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 2
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -761,140 +867,77 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
-                "services": [
-                    {
-                        "id": 1,
-                        "name": "Forwarding",
-                        "color": "#F40202",
-                        "abbreviation": "FW"
-                    }
-                ],
-                "index": 2,
-                "x": 295,
-                "y": 271,
-                "labelWidth": 49.6923828125
-            },
-            {
+                "compactVerticalLinks": false,
                 "id": "b2135ccd-fe2a-4077-9f0a-7cf3e2cd81bd",
+                "index": 4,
+                "isConnection": false,
+                "label": "DPS GW",
+                "labelWidth": 36.9580078125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     300,
                     350
                 ],
-                "label": "DPS GW",
-                "anchors": {
-                    "0": {
-                        "numLinks": 2,
-                        "numFilledLinks": 0
-                    },
-                    "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
-                },
-                "colors": {
-                    "background": "rgba(204, 204, 220, 0.10)",
-                    "border": "rgba(204, 204, 220, 0.08)",
-                    "font": "rgb(204, 204, 220)",
-                    "statusDown": "#ff0000"
-                },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
                 "services": [
                     {
-                        "id": 3,
-                        "name": "ACL",
+                        "abbreviation": "AC",
                         "color": "#DAC538",
-                        "abbreviation": "AC"
+                        "id": 3,
+                        "name": "ACL"
                     },
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 4,
+                "useConstantSpacing": false,
                 "x": 292,
-                "y": 365,
-                "labelWidth": 36.9580078125
+                "y": 365
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 2,
         "source": {
             "anchors": {
                 "0": {
@@ -963,6 +1006,7 @@
             "x": 300,
             "y": 250
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -1036,89 +1080,83 @@
             "useConstantSpacing": false,
             "x": 300,
             "y": 350
+        }
+    },
+    {
+        "arrowCenterA": {
+            "x": 358.46355744080523,
+            "y": 298.719631200671
+        },
+        "arrowCenterZ": {
+            "x": 361.53644255919477,
+            "y": 301.280368799329
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 348.22060704617354,
+                "y": 295.3906723224157
+            },
+            "p2": {
+                "x": 353.34208224348936,
+                "y": 289.24490208563674
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 371.77939295382646,
+                "y": 304.6093276775843
+            },
+            "p2": {
+                "x": 366.65791775651064,
+                "y": 310.75509791436326
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
+        "id": "0f524abd-dfd8-4eea-9bab-98c75bf83ca6",
+        "index": 3,
+        "lineEndA": {
+            "x": 350.7813446448315,
+            "y": 292.3177872040262
+        },
+        "lineEndZ": {
+            "x": 369.2186553551685,
+            "y": 307.6822127959738
         },
         "lineStartA": {
             "x": 300,
             "y": 250
         },
         "lineStartZ": {
-            "x": 300,
+            "x": 420,
             "y": 350
         },
-        "lineEndA": {
-            "x": 300,
-            "y": 288
-        },
-        "arrowCenterA": {
-            "x": 300,
-            "y": 298
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 296,
-                "y": 288
-            },
-            "p2": {
-                "x": 304,
-                "y": 288
-            }
-        },
-        "lineEndZ": {
-            "x": 300,
-            "y": 312
-        },
-        "arrowCenterZ": {
-            "x": 300,
-            "y": 302
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 304,
-                "y": 312
-            },
-            "p2": {
-                "x": 296,
-                "y": 312
-            }
-        }
-    },
-    {
-        "id": "0f524abd-dfd8-4eea-9bab-98c75bf83ca6",
         "nodes": [
             {
-                "id": "18d97705-6d43-40d8-934e-cea8059944a6",
-                "position": [
-                    300,
-                    250
-                ],
-                "label": "Control SW",
                 "anchors": {
                     "0": {
-                        "numLinks": 3,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 3
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -1126,54 +1164,66 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
+                "compactVerticalLinks": false,
+                "id": "18d97705-6d43-40d8-934e-cea8059944a6",
+                "index": 2,
                 "isConnection": false,
+                "label": "Control SW",
+                "labelWidth": 49.6923828125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
+                "position": [
+                    300,
+                    250
+                ],
                 "services": [
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 2,
+                "useConstantSpacing": false,
                 "x": 295,
-                "y": 271,
-                "labelWidth": 49.6923828125
+                "y": 271
             },
             {
                 "anchors": {
                     "0": {
-                        "numLinks": 2,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 2
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
                 },
                 "colors": {
@@ -1196,8 +1246,8 @@
                         "vertical": 5
                     },
                     "size": {
-                        "width": 30,
-                        "height": 30
+                        "height": 30,
+                        "width": 30
                     },
                     "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
                 },
@@ -1211,10 +1261,10 @@
                 ],
                 "services": [
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
                 "useConstantSpacing": false,
@@ -1222,38 +1272,31 @@
                 "y": 361
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 3,
         "source": {
             "anchors": {
                 "0": {
@@ -1322,6 +1365,7 @@
             "x": 300,
             "y": 250
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -1389,76 +1433,82 @@
             "useConstantSpacing": false,
             "x": 420,
             "y": 350
-        },
-        "lineStartA": {
-            "x": 300,
-            "y": 250
-        },
-        "lineStartZ": {
-            "x": 420,
-            "y": 350
-        },
-        "lineEndA": {
-            "x": 350.7813446448315,
-            "y": 292.3177872040262
-        },
-        "arrowCenterA": {
-            "x": 358.46355744080523,
-            "y": 298.719631200671
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 348.22060704617354,
-                "y": 295.3906723224157
-            },
-            "p2": {
-                "x": 353.34208224348936,
-                "y": 289.24490208563674
-            }
-        },
-        "lineEndZ": {
-            "x": 369.2186553551685,
-            "y": 307.6822127959738
-        },
-        "arrowCenterZ": {
-            "x": 361.53644255919477,
-            "y": 301.280368799329
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 371.77939295382646,
-                "y": 304.6093276775843
-            },
-            "p2": {
-                "x": 366.65791775651064,
-                "y": 310.75509791436326
-            }
         }
     },
     {
+        "arrowCenterA": {
+            "x": 478,
+            "y": 350
+        },
+        "arrowCenterZ": {
+            "x": 482,
+            "y": 350
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 468,
+                "y": 354
+            },
+            "p2": {
+                "x": 468,
+                "y": 346
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 492,
+                "y": 346
+            },
+            "p2": {
+                "x": 492,
+                "y": 354
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
         "id": "00eba1a6-aad1-45b1-a151-14008be0b714",
+        "index": 4,
+        "lineEndA": {
+            "x": 468,
+            "y": 350
+        },
+        "lineEndZ": {
+            "x": 492,
+            "y": 350
+        },
+        "lineStartA": {
+            "x": 420,
+            "y": 350
+        },
+        "lineStartZ": {
+            "x": 540,
+            "y": 350
+        },
         "nodes": [
             {
                 "anchors": {
                     "0": {
-                        "numLinks": 2,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 2
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
                 },
                 "colors": {
@@ -1481,8 +1531,8 @@
                         "vertical": 5
                     },
                     "size": {
-                        "width": 30,
-                        "height": 30
+                        "height": 30,
+                        "width": 30
                     },
                     "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
                 },
@@ -1496,10 +1546,10 @@
                 ],
                 "services": [
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
                 "useConstantSpacing": false,
@@ -1507,39 +1557,27 @@
                 "y": 361
             },
             {
-                "id": "10421591-ae3c-4639-8584-c0576a9ddf42",
-                "position": [
-                    540,
-                    350
-                ],
-                "label": "DSS2 GW",
                 "anchors": {
                     "0": {
-                        "numLinks": 1,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 1
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -1547,72 +1585,77 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
+                "compactVerticalLinks": false,
+                "id": "10421591-ae3c-4639-8584-c0576a9ddf42",
+                "index": 5,
                 "isConnection": false,
+                "label": "DSS2 GW",
+                "labelWidth": 42.197265625,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
+                "position": [
+                    540,
+                    350
+                ],
                 "services": [
                     {
-                        "id": 4,
-                        "name": "Asset Discovery",
+                        "abbreviation": "AD",
                         "color": "#43D44D",
-                        "abbreviation": "AD"
+                        "id": 4,
+                        "name": "Asset Discovery"
                     },
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 5,
+                "useConstantSpacing": false,
                 "x": 522,
-                "y": 361,
-                "labelWidth": 42.197265625
+                "y": 361
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 4,
         "source": {
             "anchors": {
                 "0": {
@@ -1681,6 +1724,7 @@
             "x": 420,
             "y": 350
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -1754,89 +1798,157 @@
             "useConstantSpacing": false,
             "x": 540,
             "y": 350
-        },
-        "lineStartA": {
-            "x": 420,
-            "y": 350
-        },
-        "lineStartZ": {
-            "x": 540,
-            "y": 350
-        },
-        "lineEndA": {
-            "x": 468,
-            "y": 350
-        },
-        "arrowCenterA": {
-            "x": 478,
-            "y": 350
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 468,
-                "y": 354
-            },
-            "p2": {
-                "x": 468,
-                "y": 346
-            }
-        },
-        "lineEndZ": {
-            "x": 492,
-            "y": 350
-        },
-        "arrowCenterZ": {
-            "x": 482,
-            "y": 350
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 492,
-                "y": 346
-            },
-            "p2": {
-                "x": 492,
-                "y": 354
-            }
         }
     },
     {
+        "arrowCenterA": {
+            "x": 300,
+            "y": 398
+        },
+        "arrowCenterZ": {
+            "x": 300,
+            "y": 402
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 296,
+                "y": 388
+            },
+            "p2": {
+                "x": 304,
+                "y": 388
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 304,
+                "y": 412
+            },
+            "p2": {
+                "x": 296,
+                "y": 412
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
         "id": "0b595a5e-839f-485b-8a5c-ec5778145d62",
+        "index": 5,
+        "lineEndA": {
+            "x": 300,
+            "y": 388
+        },
+        "lineEndZ": {
+            "x": 300,
+            "y": 412
+        },
+        "lineStartA": {
+            "x": 300,
+            "y": 350
+        },
+        "lineStartZ": {
+            "x": 300,
+            "y": 450
+        },
         "nodes": [
             {
+                "anchors": {
+                    "0": {
+                        "numFilledLinks": 0,
+                        "numLinks": 2
+                    },
+                    "1": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "2": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "3": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "4": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    }
+                },
+                "colors": {
+                    "background": "rgba(204, 204, 220, 0.10)",
+                    "border": "rgba(204, 204, 220, 0.08)",
+                    "font": "rgb(204, 204, 220)",
+                    "statusDown": "#ff0000"
+                },
+                "compactVerticalLinks": false,
                 "id": "b2135ccd-fe2a-4077-9f0a-7cf3e2cd81bd",
+                "index": 4,
+                "isConnection": false,
+                "label": "DPS GW",
+                "labelWidth": 36.9580078125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     300,
                     350
                 ],
-                "label": "DPS GW",
+                "services": [
+                    {
+                        "abbreviation": "AC",
+                        "color": "#DAC538",
+                        "id": 3,
+                        "name": "ACL"
+                    },
+                    {
+                        "abbreviation": "FW",
+                        "color": "#F40202",
+                        "id": 1,
+                        "name": "Forwarding"
+                    }
+                ],
+                "useConstantSpacing": false,
+                "x": 292,
+                "y": 365
+            },
+            {
                 "anchors": {
                     "0": {
-                        "numLinks": 2,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 3
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -1844,146 +1956,77 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
-                "services": [
-                    {
-                        "id": 3,
-                        "name": "ACL",
-                        "color": "#DAC538",
-                        "abbreviation": "AC"
-                    },
-                    {
-                        "id": 1,
-                        "name": "Forwarding",
-                        "color": "#F40202",
-                        "abbreviation": "FW"
-                    }
-                ],
-                "index": 4,
-                "x": 292,
-                "y": 365,
-                "labelWidth": 36.9580078125
-            },
-            {
+                "compactVerticalLinks": false,
                 "id": "a9204766-c742-430d-9646-dc1ff1d27a78",
+                "index": 7,
+                "isConnection": false,
+                "label": "DPS RS",
+                "labelWidth": 33.3642578125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     300,
                     450
                 ],
-                "label": "DPS RS",
-                "anchors": {
-                    "0": {
-                        "numLinks": 3,
-                        "numFilledLinks": 0
-                    },
-                    "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
-                },
-                "colors": {
-                    "background": "rgba(204, 204, 220, 0.10)",
-                    "border": "rgba(204, 204, 220, 0.08)",
-                    "font": "rgb(204, 204, 220)",
-                    "statusDown": "#ff0000"
-                },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
                 "services": [
                     {
-                        "id": 4,
-                        "name": "Asset Discovery",
+                        "abbreviation": "AD",
                         "color": "#43D44D",
-                        "abbreviation": "AD"
+                        "id": 4,
+                        "name": "Asset Discovery"
                     },
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 7,
+                "useConstantSpacing": false,
                 "x": 298,
-                "y": 454,
-                "labelWidth": 33.3642578125
+                "y": 454
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 5,
         "source": {
             "anchors": {
                 "0": {
@@ -2058,6 +2101,7 @@
             "x": 300,
             "y": 350
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -2131,89 +2175,157 @@
             "useConstantSpacing": false,
             "x": 300,
             "y": 450
-        },
-        "lineStartA": {
-            "x": 300,
-            "y": 350
-        },
-        "lineStartZ": {
-            "x": 300,
-            "y": 450
-        },
-        "lineEndA": {
-            "x": 300,
-            "y": 388
-        },
-        "arrowCenterA": {
-            "x": 300,
-            "y": 398
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 296,
-                "y": 388
-            },
-            "p2": {
-                "x": 304,
-                "y": 388
-            }
-        },
-        "lineEndZ": {
-            "x": 300,
-            "y": 412
-        },
-        "arrowCenterZ": {
-            "x": 300,
-            "y": 402
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 304,
-                "y": 412
-            },
-            "p2": {
-                "x": 296,
-                "y": 412
-            }
         }
     },
     {
+        "arrowCenterA": {
+            "x": 242,
+            "y": 450
+        },
+        "arrowCenterZ": {
+            "x": 238,
+            "y": 450
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 252,
+                "y": 446
+            },
+            "p2": {
+                "x": 252,
+                "y": 454
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 228,
+                "y": 454
+            },
+            "p2": {
+                "x": 228,
+                "y": 446
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
         "id": "f0f01d80-5c7b-42fc-8e77-69729a639c38",
+        "index": 6,
+        "lineEndA": {
+            "x": 252,
+            "y": 450
+        },
+        "lineEndZ": {
+            "x": 228,
+            "y": 450
+        },
+        "lineStartA": {
+            "x": 300,
+            "y": 450
+        },
+        "lineStartZ": {
+            "x": 180,
+            "y": 450
+        },
         "nodes": [
             {
+                "anchors": {
+                    "0": {
+                        "numFilledLinks": 0,
+                        "numLinks": 3
+                    },
+                    "1": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "2": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "3": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "4": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    }
+                },
+                "colors": {
+                    "background": "rgba(204, 204, 220, 0.10)",
+                    "border": "rgba(204, 204, 220, 0.08)",
+                    "font": "rgb(204, 204, 220)",
+                    "statusDown": "#ff0000"
+                },
+                "compactVerticalLinks": false,
                 "id": "a9204766-c742-430d-9646-dc1ff1d27a78",
+                "index": 7,
+                "isConnection": false,
+                "label": "DPS RS",
+                "labelWidth": 33.3642578125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     300,
                     450
                 ],
-                "label": "DPS RS",
+                "services": [
+                    {
+                        "abbreviation": "AD",
+                        "color": "#43D44D",
+                        "id": 4,
+                        "name": "Asset Discovery"
+                    },
+                    {
+                        "abbreviation": "FW",
+                        "color": "#F40202",
+                        "id": 1,
+                        "name": "Forwarding"
+                    }
+                ],
+                "useConstantSpacing": false,
+                "x": 298,
+                "y": 454
+            },
+            {
                 "anchors": {
                     "0": {
-                        "numLinks": 3,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 1
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -2221,146 +2333,77 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
-                "services": [
-                    {
-                        "id": 4,
-                        "name": "Asset Discovery",
-                        "color": "#43D44D",
-                        "abbreviation": "AD"
-                    },
-                    {
-                        "id": 1,
-                        "name": "Forwarding",
-                        "color": "#F40202",
-                        "abbreviation": "FW"
-                    }
-                ],
-                "index": 7,
-                "x": 298,
-                "y": 454,
-                "labelWidth": 33.3642578125
-            },
-            {
+                "compactVerticalLinks": false,
                 "id": "59fb6c1e-feee-45df-8ee1-0cf9ae5c1056",
+                "index": 6,
+                "isConnection": false,
+                "label": "DPS HV",
+                "labelWidth": 34.765625,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     180,
                     450
                 ],
-                "label": "DPS HV",
-                "anchors": {
-                    "0": {
-                        "numLinks": 1,
-                        "numFilledLinks": 0
-                    },
-                    "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
-                },
-                "colors": {
-                    "background": "rgba(204, 204, 220, 0.10)",
-                    "border": "rgba(204, 204, 220, 0.08)",
-                    "font": "rgb(204, 204, 220)",
-                    "statusDown": "#ff0000"
-                },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
                 "services": [
                     {
-                        "id": 4,
-                        "name": "Asset Discovery",
+                        "abbreviation": "AD",
                         "color": "#43D44D",
-                        "abbreviation": "AD"
+                        "id": 4,
+                        "name": "Asset Discovery"
                     },
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 6,
+                "useConstantSpacing": false,
                 "x": 193,
-                "y": 453,
-                "labelWidth": 34.765625
+                "y": 453
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 6,
         "source": {
             "anchors": {
                 "0": {
@@ -2435,6 +2478,7 @@
             "x": 300,
             "y": 450
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -2508,89 +2552,157 @@
             "useConstantSpacing": false,
             "x": 180,
             "y": 450
+        }
+    },
+    {
+        "arrowCenterA": {
+            "x": 358,
+            "y": 450
+        },
+        "arrowCenterZ": {
+            "x": 362,
+            "y": 450
+        },
+        "arrowPolygonA": {
+            "p1": {
+                "x": 348,
+                "y": 454
+            },
+            "p2": {
+                "x": 348,
+                "y": 446
+            }
+        },
+        "arrowPolygonZ": {
+            "p1": {
+                "x": 372,
+                "y": 446
+            },
+            "p2": {
+                "x": 372,
+                "y": 454
+            }
+        },
+        "arrows": {
+            "height": 10,
+            "offset": 2,
+            "width": 8
+        },
+        "id": "6173b720-3414-4562-977c-12e891d895c2",
+        "index": 7,
+        "lineEndA": {
+            "x": 348,
+            "y": 450
+        },
+        "lineEndZ": {
+            "x": 372,
+            "y": 450
         },
         "lineStartA": {
             "x": 300,
             "y": 450
         },
         "lineStartZ": {
-            "x": 180,
+            "x": 420,
             "y": 450
         },
-        "lineEndA": {
-            "x": 252,
-            "y": 450
-        },
-        "arrowCenterA": {
-            "x": 242,
-            "y": 450
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 252,
-                "y": 446
-            },
-            "p2": {
-                "x": 252,
-                "y": 454
-            }
-        },
-        "lineEndZ": {
-            "x": 228,
-            "y": 450
-        },
-        "arrowCenterZ": {
-            "x": 238,
-            "y": 450
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 228,
-                "y": 454
-            },
-            "p2": {
-                "x": 228,
-                "y": 446
-            }
-        }
-    },
-    {
-        "id": "6173b720-3414-4562-977c-12e891d895c2",
         "nodes": [
             {
+                "anchors": {
+                    "0": {
+                        "numFilledLinks": 0,
+                        "numLinks": 3
+                    },
+                    "1": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "2": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "3": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    },
+                    "4": {
+                        "numFilledLinks": 0,
+                        "numLinks": 0
+                    }
+                },
+                "colors": {
+                    "background": "rgba(204, 204, 220, 0.10)",
+                    "border": "rgba(204, 204, 220, 0.08)",
+                    "font": "rgb(204, 204, 220)",
+                    "statusDown": "#ff0000"
+                },
+                "compactVerticalLinks": false,
                 "id": "a9204766-c742-430d-9646-dc1ff1d27a78",
+                "index": 7,
+                "isConnection": false,
+                "label": "DPS RS",
+                "labelWidth": 33.3642578125,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     300,
                     450
                 ],
-                "label": "DPS RS",
+                "services": [
+                    {
+                        "abbreviation": "AD",
+                        "color": "#43D44D",
+                        "id": 4,
+                        "name": "Asset Discovery"
+                    },
+                    {
+                        "abbreviation": "FW",
+                        "color": "#F40202",
+                        "id": 1,
+                        "name": "Forwarding"
+                    }
+                ],
+                "useConstantSpacing": false,
+                "x": 298,
+                "y": 454
+            },
+            {
                 "anchors": {
                     "0": {
-                        "numLinks": 3,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 1
                     },
                     "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     },
                     "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
+                        "numFilledLinks": 0,
+                        "numLinks": 0
                     }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
                 },
                 "colors": {
                     "background": "rgba(204, 204, 220, 0.10)",
@@ -2598,146 +2710,77 @@
                     "font": "rgb(204, 204, 220)",
                     "statusDown": "#ff0000"
                 },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
-                "services": [
-                    {
-                        "id": 4,
-                        "name": "Asset Discovery",
-                        "color": "#43D44D",
-                        "abbreviation": "AD"
-                    },
-                    {
-                        "id": 1,
-                        "name": "Forwarding",
-                        "color": "#F40202",
-                        "abbreviation": "FW"
-                    }
-                ],
-                "index": 7,
-                "x": 298,
-                "y": 454,
-                "labelWidth": 33.3642578125
-            },
-            {
+                "compactVerticalLinks": false,
                 "id": "1be4642d-5056-4348-a1dc-532d9e084942",
+                "index": 8,
+                "isConnection": false,
+                "label": "DPS MV",
+                "labelWidth": 36.3671875,
+                "nodeIcon": {
+                    "drawInside": true,
+                    "name": "cisco/layer-3-switch",
+                    "padding": {
+                        "horizontal": 0,
+                        "vertical": 5
+                    },
+                    "size": {
+                        "height": 30,
+                        "width": 30
+                    },
+                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg"
+                },
+                "padding": {
+                    "horizontal": 10,
+                    "vertical": 4
+                },
                 "position": [
                     420,
                     450
                 ],
-                "label": "DPS MV",
-                "anchors": {
-                    "0": {
-                        "numLinks": 1,
-                        "numFilledLinks": 0
-                    },
-                    "1": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "2": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "3": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    },
-                    "4": {
-                        "numLinks": 0,
-                        "numFilledLinks": 0
-                    }
-                },
-                "useConstantSpacing": false,
-                "compactVerticalLinks": false,
-                "padding": {
-                    "vertical": 4,
-                    "horizontal": 10
-                },
-                "colors": {
-                    "background": "rgba(204, 204, 220, 0.10)",
-                    "border": "rgba(204, 204, 220, 0.08)",
-                    "font": "rgb(204, 204, 220)",
-                    "statusDown": "#ff0000"
-                },
-                "nodeIcon": {
-                    "src": "public/plugins/knightss27-weathermap-panel/icons/cisco/layer-3-switch.svg",
-                    "name": "cisco/layer-3-switch",
-                    "size": {
-                        "width": 30,
-                        "height": 30
-                    },
-                    "padding": {
-                        "vertical": 5,
-                        "horizontal": 0
-                    },
-                    "drawInside": true
-                },
-                "isConnection": false,
                 "services": [
                     {
-                        "id": 4,
-                        "name": "Asset Discovery",
+                        "abbreviation": "AD",
                         "color": "#43D44D",
-                        "abbreviation": "AD"
+                        "id": 4,
+                        "name": "Asset Discovery"
                     },
                     {
-                        "id": 1,
-                        "name": "Forwarding",
+                        "abbreviation": "FW",
                         "color": "#F40202",
-                        "abbreviation": "FW"
+                        "id": 1,
+                        "name": "Forwarding"
                     }
                 ],
-                "index": 8,
+                "useConstantSpacing": false,
                 "x": 413,
-                "y": 463,
-                "labelWidth": 36.3671875
+                "y": 463
             }
         ],
+        "showThroughputPercentage": false,
         "sides": {
             "A": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             },
             "Z": {
-                "bandwidth": 0,
-                "labelOffset": 55,
                 "anchor": 0,
-                "dashboardLink": "",
-                "currentValue": 0,
-                "currentText": "n/a",
-                "currentValueText": "n/a",
+                "bandwidth": 0,
+                "currentBandwidthText": "0  b/s",
                 "currentPercentageText": "n/a%",
-                "currentBandwidthText": "0  b/s"
+                "currentText": "n/a",
+                "currentValue": 0,
+                "currentValueText": "n/a",
+                "dashboardLink": "",
+                "labelOffset": 55
             }
         },
-        "stroke": 8,
-        "arrows": {
-            "width": 8,
-            "height": 10,
-            "offset": 2
-        },
-        "showThroughputPercentage": false,
-        "index": 7,
         "source": {
             "anchors": {
                 "0": {
@@ -2812,6 +2855,7 @@
             "x": 300,
             "y": 450
         },
+        "stroke": 8,
         "target": {
             "anchors": {
                 "0": {
@@ -2885,50 +2929,6 @@
             "useConstantSpacing": false,
             "x": 420,
             "y": 450
-        },
-        "lineStartA": {
-            "x": 300,
-            "y": 450
-        },
-        "lineStartZ": {
-            "x": 420,
-            "y": 450
-        },
-        "lineEndA": {
-            "x": 348,
-            "y": 450
-        },
-        "arrowCenterA": {
-            "x": 358,
-            "y": 450
-        },
-        "arrowPolygonA": {
-            "p1": {
-                "x": 348,
-                "y": 454
-            },
-            "p2": {
-                "x": 348,
-                "y": 446
-            }
-        },
-        "lineEndZ": {
-            "x": 372,
-            "y": 450
-        },
-        "arrowCenterZ": {
-            "x": 362,
-            "y": 450
-        },
-        "arrowPolygonZ": {
-            "p1": {
-                "x": 372,
-                "y": 446
-            },
-            "p2": {
-                "x": 372,
-                "y": 454
-            }
         }
     }
 ]
