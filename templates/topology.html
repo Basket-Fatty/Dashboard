@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Topology {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<!-- [ Main Content ] start -->
+	<div class="pcoded-main-container">
+		<div class="pcoded-content">
+			<!-- [ breadcrumb ] start -->
+			<div class="page-header">
+				<div class="page-block">
+					<div class="row align-items-center">
+						<div class="col-md-12">
+							<div class="page-header-title">
+								<h5 class="m-b-10">Topology</h5>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- [ breadcrumb ] end -->
+			<!-- [ Main Content ] start -->
+			<div class="row">
+				<!-- [ sample-page ] start -->
+				<div class="col-sm-12">
+					<div class="card">
+
+						<iframe src="http://localhost:3000/d-solo/bdw2x0sbjhwxsc/dashboard?orgId=1&refresh=5s&from=1724799250022&to=1724802850022&theme=light&panelId=1" width="100%" height="600px" frameborder="0"></iframe>
+
+						<!-- <img src="/static/assets/images/topology.png" style="width:50%; display:block; margin-left: auto; margin-right: auto;" alt="Topology"> -->
+						 
+					</div>
+				</div>
+				<!-- [ sample-page ] end -->
+			</div>
+			<!-- [ Main Content ] end -->
+		</div>
+	</div>
+	<!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
